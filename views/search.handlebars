@@ -10,31 +10,31 @@
   </head>
   
   <body>
-    <div>
-      <header>
-        <h1>
-          Book Master
-        </h1>
-        <h2>
-          Welcome, User!
-        </h2>  
-        <nav>
-          <button>My Homepage</button>
-          <button>Search for Books</button>
-          <button>Free Books</button>
-          <button>Logout</button>
-        </nav>  
+    <div class="grid grid-cols-8 gap-4 m-2">
+    <header class="col-span-8"><br>
+      <h1 class="col-span-8 text-center text-4xl">
+         Book Master
+      </h1><br>
+      <h2 class="col-span-8 text-center text-xl">
+        Welcome, User!
+      </h2><br>
+        <nav class="col-span-8 space-x-4 text-center">
+          <button class="col-span-2 w-[100px] bg-blue-500">My Homepage</button>
+          <button class="col-span-2 w-[100px] bg-blue-500">Search for Books</button>
+          <button class="col-span-2 w-[100px]   bg-blue-500">Free Books</button>
+          <button class="col-span-2 w-[100px]   bg-blue-500">Logout</button>
+        </nav><br>  
       </header>
-      <main>
-        <p>Search books by title, author, or ISBN:</p>
-        <input type="text"><br>
-        <label for= "Books">Search By:</label>
-        <select>
+      <main class="col-span-8 p-20 text-xl outline outline-1">
+        <p class="col-span-8">Search books by title, author, or ISBN:</p>
+        <input type="text" class="col-span-8 w-[100%]"><br><br>
+        <label for="Books">Select Search Type:</label><br>
+        <select class="col-span-8 w-[100%]">
           <option="title">Title</option>
           <option="author">Author</option>
           <option="isbn">ISBN</option>
-        </select><br>    
-        <button>Search</button>
+          </select><br><br>    
+          <button class="bg-blue-500 w-[200px]">Search</button>
       </main>
       <footer>
       </footer>
