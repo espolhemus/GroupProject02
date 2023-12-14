@@ -1,25 +1,26 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+const { Collection, User, Book } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
-    const projectData = await Project.findAll({
+    // Get all User and show all of their collections and book data in each collection
+    const userData = await User.findByPk(req.params.user_id,{
+      attributes: { exclude: ['password'] },
       include: [
         {
-          model: User,
-          attributes: ['name'],
+          model: Collection,
+          include: [{model: Book}]
         },
       ],
     });
 
     // Serialize data so the template can read it
-    const projects = projectData.map((project) => project.get({ plain: true }));
+    const collection = userData.map((collection) => collection.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
-      projects, 
+      ...collection, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -27,21 +28,16 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/project/:id', async (req, res) => {
+// User clicks a book on one of their collections. Retrieves the data for clicked book and redirects them to the "Display a single book" handlebars file
+router.get('/book/:bookid', async (req, res) => {
   try {
-    const projectData = await Project.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
+    const bookData = await Book.findByPk(req.params.bookid, {
     });
 
-    const project = projectData.get({ plain: true });
+    const book = bookData.get({ plain: true });
 
-    res.render('project', {
-      ...project,
+    res.render('book', {
+      ...book,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -49,33 +45,27 @@ router.get('/project/:id', async (req, res) => {
   }
 });
 
-// Use withAuth middleware to prevent access to route
-router.get('/profile', withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
-    });
+// // Use withAuth middleware to prevent access to route
+// router.get('/profile', withAuth, async (req, res) => {
+//   try {
+//     // Find the logged in user based on the session ID
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ['password'] },
+//       include: [{ model: Project }],
+//     });
 
-    const user = userData.get({ plain: true });
+//     const user = userData.get({ plain: true });
 
-    res.render('profile', {
-      ...user,
-      logged_in: true
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.render('profile', {
+//       ...user,
+//       logged_in: true
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/profile');
-    return;
-  }
-
   res.render('login');
 });
 
