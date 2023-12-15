@@ -1,21 +1,25 @@
 const router = require('express').Router();
-const { User, Post, Comment } = require('../models');
+const { Book } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/:isbn', withAuth, (req, res) => {
+
+// User clicks a book on one of their collections. Retrieves the data for clicked book and redirects them to the "Display a single book" handlebars file
+router.get('/:ISBN', withAuth, async (req, res) => {
     try {
-      res.render('book', {
-        
-        loggedIn: req.session.loggedIn,
-        user_Id: req.session.userId,
-      })
+      const bookData = await Book.findByPk(req.params.ISBN, {
+      });
+  
+      const book = bookData.map(book => book.get({ plain: true }));
+  
+      res.render('books', {
+        ...book,
+        loggedIn: req.session.logged_in,
+        user_Id: req.session.user_id,
+      });
     } catch (err) {
-      console.log(err);
       res.status(500).json(err);
-    };
-});
-
-
+    }
+  });
 
 
 
