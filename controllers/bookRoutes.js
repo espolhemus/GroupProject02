@@ -11,7 +11,7 @@ router.get('/:ISBN', async (req, res) => {
   
       const book = bookData.map(book => book.get({ plain: true }));
   
-      res.render('books', {
+      res.render('book', {
         ...book,
         loggedIn: req.session.logged_in,
         user_Id: req.session.user_id,
