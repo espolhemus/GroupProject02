@@ -19,11 +19,14 @@
       <h2 class="col-span-8 text-center text-3xl">
         Welcome, User!
       </h2><br><br>
+        <nav>
+        <!-- Render the nav bar sub layout -->
         {{{ nav }}}
-      </header>
+        </nav>
+    </header>
       <main>
-        <!-- Render the sub layout -->
-        {{{ body }}}
+        <!-- Render the main sub layout -->
+        {{{ main }}}
       </main>  
       <footer>
       </footer>
@@ -32,6 +35,8 @@
     <!-- Render script for logged in users only -->
     {{#if logged_in}}
     <script src="/js/logout.js"></script>
+    <script src="./js/search.js"></script>
+    <script src="./js/books.js"></script>
     {{/if}}
 
   </body>
