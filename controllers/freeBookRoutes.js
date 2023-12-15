@@ -2,9 +2,9 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-      res.render('freebooks', {
+      res.render('books', {
         loggedIn: req.session.loggedIn,
         user_Id: req.session.userId,
       })
