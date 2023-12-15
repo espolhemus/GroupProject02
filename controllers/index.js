@@ -10,7 +10,7 @@ const bookRoutes = require('./bookRoutes');
 router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
 router.use('/search', searchRoutes);
-router.use('/freebooks', freeBookRoutes);
-router.use('/books', bookRoutes);
+router.use('/books', freeBookRoutes);
+router.use('/book', bookRoutes);
 
 module.exports = router;
