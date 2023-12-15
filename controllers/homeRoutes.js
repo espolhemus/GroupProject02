@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Collection, User, Book } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     // Get all User and show all of their collections and book data in each collection
     const userData = await User.findByPk(req.session.user_id, {
