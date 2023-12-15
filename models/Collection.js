@@ -5,12 +5,13 @@ class Collection extends Model {}
 
 Collection.init(
   {
-    userId: {
+      userId: {
         type: DataTypes.INTEGER,
         references: {
           model: 'user',
           key: 'userId',
         },
+        primaryKey: true,
       },
       bookId: {
         type: DataTypes.INTEGER,
@@ -18,6 +19,7 @@ Collection.init(
           model: 'book',
           key: 'bookId',
         },
+        primaryKey: true,
       },  
     collectionName: {
       type: DataTypes.STRING,
