@@ -4,7 +4,7 @@ const withAuth = require('../../utils/auth');
 
 
 // Update a collection based on the choice to add to hasread or wantstoread lists and then redirect to their dashboard
-router.put('/', withAuth, async (req, res) => {
+router.put('/', async (req, res) => {
     
     try {
         var collectionData;
@@ -42,7 +42,7 @@ router.put('/', withAuth, async (req, res) => {
 
 // This will modified later if we decide to let the user make collections other than hasread of wantstoread
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const newProject = await Project.create({
       ISBN : req.body.ISBN,
@@ -58,7 +58,7 @@ router.post('/', withAuth, async (req, res) => {
 
 // This will be modified later if we decide to let users delete a created collection
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const projectData = await Project.destroy({
             where: {

@@ -2,13 +2,10 @@ const router = require('express').Router();
 const { Review } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
-
-
  // For retrieving data for a review
-router.get('/', withAuth, async (req,res) => {
+router.get('/:reviewid', async (req,res) => {
     try{
-        const reviewData = await Review.findOne({where: {ReviewID : req.body.reviewId}})
+        const reviewData = await Review.findOne({where: {ReviewID : req.params.reviewid}})
         res.status(200).json(reviewData);
 
     } catch {
@@ -19,7 +16,7 @@ router.get('/', withAuth, async (req,res) => {
 
 
 // Create a new review for a specific book
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
 
     try {
 
@@ -41,7 +38,7 @@ router.post('/', withAuth, async (req, res) => {
 
 
 // This will be modified later if we decide to let users delete a review
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const projectData = await Project.destroy({
             where: {
