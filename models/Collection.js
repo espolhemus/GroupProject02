@@ -4,14 +4,19 @@ const sequelize = require('../config/connection');
 class Collection extends Model {}
 
 Collection.init(
-  {
+  {   
+      collectionId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       userId: {
         type: DataTypes.INTEGER,
         references: {
           model: 'user',
           key: 'userId',
         },
-        primaryKey: true,
       },
       bookId: {
         type: DataTypes.INTEGER,
@@ -19,7 +24,6 @@ Collection.init(
           model: 'book',
           key: 'bookId',
         },
-        primaryKey: true,
       },  
     collectionName: {
       type: DataTypes.STRING,
