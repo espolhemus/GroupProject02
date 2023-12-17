@@ -14,10 +14,11 @@ const loginFormHandler = async(event) => {
         });
 
         if (response.ok) {
-            // If successful, redirect the browser to the profile page
+            // If successful, redirect the browser to the dashboard
             document.location.replace('/');
         } else {
             alert(response.statusText);
+
         }
     }
 };
@@ -25,13 +26,14 @@ const loginFormHandler = async(event) => {
 const signupFormHandler = async(event) => {
     event.preventDefault();
 
-    const name = document.querySelector('#name-signup').value.trim();
-    const email = document.querySelector('#email-signup').value.trim();
+    const emailAddress = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
+    const firstName = document.querySelector('#first-name-signup').value.trim();
+    const lastName = document.querySelector('#last-name-signup').value.trim();
 
-    if (name && email && password) {
+    if (emailAddress && password && firstName && lastName) {
         // Check if the email is already registered
-        const emailExists = await checkEmailExists(email);
+        const emailExists = await checkEmailExists(emailAddress);
 
         if (emailExists) {
             alert('This email is already registered. Please use a different email.');
@@ -39,12 +41,12 @@ const signupFormHandler = async(event) => {
         }
 
         // If the email is unique, proceed with signup
+
         const response = await fetch('/api/users', {
             method: 'POST',
-            body: JSON.stringify({ name, email, password }),
+            body: JSON.stringify({ emailAddress, password, firstName, lastName}),
             headers: { 'Content-Type': 'application/json' },
         });
-
         if (response.ok) {
             document.location.replace('/');
         } else {
@@ -53,9 +55,9 @@ const signupFormHandler = async(event) => {
     }
 };
 
-const checkEmailExists = async(email) => {
+const checkEmailExists = async(emailAddress) => {
     try {
-        const response = await fetch(`/api/users/email/${email}`);
+        const response = await fetch(`/api/users/email/${emailAddress}`);
         const data = await response.json();
         return data.exists;
     } catch (error) {
