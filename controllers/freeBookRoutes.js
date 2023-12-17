@@ -7,6 +7,8 @@ router.get('/', async (req, res) => {
       res.render('books', {
         loggedIn: req.session.loggedIn,
         user_Id: req.session.userId,
+        name: req.session.name
+
       })
     } catch (err) {
       console.log(err);

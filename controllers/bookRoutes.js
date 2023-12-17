@@ -15,6 +15,8 @@ router.get('/:ISBN', async (req, res) => {
         ...book,
         loggedIn: req.session.logged_in,
         user_Id: req.session.user_id,
+        name: req.session.name
+
       });
     } catch (err) {
       res.status(500).json(err);
