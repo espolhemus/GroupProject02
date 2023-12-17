@@ -38,9 +38,9 @@ const Review = require('./Review');
 //   foreignKey: 'userId'
 // });
 
-User.belongsToMany(Book, { through: Collection,})
-Book.belongsToMany(User, { through: Collection,})
+User.belongsToMany(Book, { through: Collection, foreignKey : "user_id"})
+Book.belongsToMany(User, { through: Collection, foreignKey: "book_id"})
 
-User.belongsToMany(Book, {through: Review,})
-Book.belongsToMany(User, { through: Review,})
-// module.exports = { User, Book, Collection, Review };
+User.belongsToMany(Book, {through: Review,foreignKey : "user_id"})
+Book.belongsToMany(User, { through: Review,foreignKey: "book_id"})
+module.exports = { User, Book, Collection, Review };
