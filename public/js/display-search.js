@@ -1,7 +1,9 @@
+var selectType= 
+var bookQuery=
 // Search books using title input select
 function searchbooksByTitle() {
   // var apiKey= 
-  apiURL= `https://www.googleapis.com/books/v1/volumes?q=intitle:`
+  apiURL= `https://www.googleapis.com/books/v1/volumes?q=${bookQuery}+intitle:`
   fetch(apiURL)
     .then(response => response.json())
     .then(responseData => {
@@ -41,7 +43,7 @@ function searchbooksByIsbn() {
 }
 
 // Display book search results to page
-function displaySearchResults() {
+function displaySearchResults(books) {
   var resultsContainer = document.getElementById('output-list');
   resultsContainer.innerHTML = "";
 
@@ -49,7 +51,15 @@ function displaySearchResults() {
     var bookCard = document.createElement("div");
       bookCard.className= "card";
       bookCard.innerHTML = `
-
+        <img src="${book.smallThumbnail}" class="" alt="${book.title}">
+        <div class="card-body">
+          <h4 class="card-title">"${book.title}"</h4>
+          <h5 class="card-subtitle">${book.subtitle}</h5>
+          <p>By: ${book.authors}</p>
+          <a href="${book.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
+          <button id="save-read" class="btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Save to Read</button>
+          <button id="add-reading" class="btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Add to Reading List</button>
+        <div>
       `
   });
 
@@ -72,4 +82,4 @@ function handleFormSubmit(event) {
 }
 
  // Event listener for search form submit
- searchFormEl.addEventListener('submit', handleFormSubmit);
+ searchFormEl.addEventListener('submit', handleFormSubmit)
