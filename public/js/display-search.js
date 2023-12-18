@@ -1,7 +1,7 @@
 // Search books using title input select
 function searchbooksByTitle() {
-  // var apiKey=
-  // var apiURL=
+  // var apiKey= 
+  apiURL= `https://www.googleapis.com/books/v1/volumes?q=intitle:`
   fetch(apiURL)
     .then(response => response.json())
     .then(responseData => {
@@ -15,7 +15,7 @@ function searchbooksByTitle() {
 // Search books using author input select
 function searchbooksByAuthor() {
   // var apiKey=
-  // var apiURL=
+  var apiURL= `https://www.googleapis.com/books/v1/volumes?q=inauthor:`
   fetch(apiURL)
     .then(response => response.json())
     .then(responseData => {
@@ -29,7 +29,7 @@ function searchbooksByAuthor() {
 // Search books using ISBN input select
 function searchbooksByIsbn() {
   // var apiKey=
-  // var apiURL=
+  var apiURL= `https://www.googleapis.com/books/v1/volumes?q=isbn:`
   fetch(apiURL)
     .then(response => response.json())
     .then(responseData => {
@@ -42,14 +42,14 @@ function searchbooksByIsbn() {
 
 // Display book search results to page
 function displaySearchResults() {
-  var resultsContainer = document.getElementById('results-container');
+  var resultsContainer = document.getElementById('output-list');
   resultsContainer.innerHTML = "";
 
   books.forEeach(book => {
     var bookCard = document.createElement("div");
       bookCard.className= "card";
       bookCard.innerHTML = `
-      
+
       `
   });
 
