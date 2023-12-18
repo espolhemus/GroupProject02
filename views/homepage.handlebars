@@ -1,9 +1,16 @@
     
+    {{!-- Iterates through collection lists and displays information  --}}
     <main class="col-span-8 flex mb-4 p-5 outline outline-1">
       <div class="w-full p-2 m-2 outline outline-1">
         <h3 class="text-2xl text-center">Have Read:</h3><br>
+        {{#each hasRead as |has|}}
+        {{>collections}}
+        {{/each}}
       </div> 
       <div class="w-full p-2 m-2 outline outline-1">
         <h3 class="text-2xl text-center">Want To Read:</h3><br>
+        {{#each wantsToRead as |want|}}
+        {{>collections}}
+        {{/each}}
       </div>
     </main> 

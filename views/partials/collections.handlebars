@@ -1,0 +1,10 @@
+{{!-- pulls out book information from each collection  --}}
+<div>
+    <h3>{{book.bookTitle}} by {{book.bookAuthor}}</h3>
+    <p>Genre: {{book.bookGenre}}</p>
+    <p>Pages: {{book.bookPages}}</p>
+    <p>ISBN:  {{book.bookIsbn}}</p>
+    <a href="{{book.eBookUrl}}"><img src="{{book.bookImageUrl}}"></a>
+    <p>Description: {{book.bookDescription}}</p>
+    <p>Published by: {{book.publisherName}} on {{book.publicationDate}}</p>
+</div>
