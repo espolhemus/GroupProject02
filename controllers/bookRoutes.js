@@ -13,8 +13,8 @@ router.get('/:ISBN', async (req, res) => {
   
       res.render('book', {
         ...book,
-        loggedIn: req.session.logged_in,
-        user_Id: req.session.user_id,
+        logged_in: req.session.logged_in,
+        user_id: req.session.user_id,
         name: req.session.name
 
       });

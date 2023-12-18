@@ -27,11 +27,11 @@ Book.init(
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-    bookISBN: {
+    bookIsbn: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-    bookImageURL: {
+    bookImageUrl: {
         type: DataTypes.CHAR,
         allowNull: true,
       },
@@ -47,7 +47,7 @@ Book.init(
         type: DataTypes.STRING,
         allowNull: false,
       },
-    eBookURL: {
+    eBookUrl: {
         type: DataTypes.CHAR,
         allowNull: true,
       },
