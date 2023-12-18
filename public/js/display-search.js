@@ -1,6 +1,6 @@
 // Search books using title input select
 function searchBooks() {
-  var apiKey= AIzaSyCn_GY-e0YI-qPTbmDGhQevrirQqWuLkVM
+  var apiKey=
   apiURL= `https://www.googleapis.com/books/v1/volumes?q=${searchInputValue}+${searchTypeValue}&key=${apiKey}`
   fetch(apiURL)
     .then(response => response.json())
