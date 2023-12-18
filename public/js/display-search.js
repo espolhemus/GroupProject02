@@ -42,7 +42,17 @@ function searchbooksByIsbn() {
 
 // Display book search results to page
 function displaySearchResults() {
- 
+  var resultsContainer = document.getElementById('results-container');
+  resultsContainer.innerHTML = "";
+
+  books.forEeach(book => {
+    var bookCard = document.createElement("div");
+      bookCard.className= "card";
+      bookCard.innerHTML = `
+      
+      `
+  });
+
 }
 
 const searchFormEl= document.querySelector('#search-form');
