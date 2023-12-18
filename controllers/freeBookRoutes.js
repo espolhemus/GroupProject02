@@ -5,8 +5,8 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
     try {
       res.render('books', {
-        loggedIn: req.session.loggedIn,
-        user_Id: req.session.userId,
+        logged_in: req.session.logged_in,
+        user_id: req.session.user_id,
         name: req.session.name
 
       })
