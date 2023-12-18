@@ -1,5 +1,4 @@
-
-<main class="col-span-8 p-20 text-xl outline outline-1">
+<div class="col-span-8 p-20 text-xl outline outline-1">
   <form id="search-form">
     <p class="col-span-8">Search books by title, author, or ISBN:</p>
     <input type="text" id="search-input"class="col-span-8 w-[100%] outline outline-1"><br><br>
@@ -9,8 +8,8 @@
       <option value="author">Author</option>
       <option value="isbn">ISBN</option>
     </select><br><br>    
-    <button id="search-button" class="bg-blue-500 w-[200px]">Search</button>
+    <button id="search-button" class="bg-blue-500 hover:bg-blue-700 text-white w-[200px] active:text-blue-500">Search</button>
   </form>
   <!-- Container to hold search results content -->
-  <div id="search-container">
-</main>
+  <div id="search-container"></div>
+</div>
