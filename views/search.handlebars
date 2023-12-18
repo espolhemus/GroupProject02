@@ -1,15 +1,21 @@
 <div class="col-span-8 p-20 text-xl outline outline-1">
   <form id="search-form">
     <p class="col-span-8">Search books by title, author, or ISBN:</p>
-    <input type="text" id="search-input"class="col-span-8 w-[100%] outline outline-1"><br><br>
+    <input type="text" id="search-input"class="col-span-8 w-[100%] outline outline-1 focus:outline-2 focus:outline-blue-400"><br><br>
     <label for="Books">Select Search Type:</label><br>
-    <select id="search-type" class="col-span-8 w-[100%] outline outline-1">
-      <option value="title">Title</option>
-      <option value="author">Author</option>
-      <option value="isbn">ISBN</option>
+    <select id="search-type" class="col-span-8 w-[100%] outline outline-1 focus:outline-2 focus:outline-blue-400">
+      <option value="intitle:">Title</option>
+      <option value="inauthor:">Author</option>
+      <option value="isbn:">ISBN</option>
     </select><br><br>    
     <button id="search-button" class="bg-blue-500 hover:bg-blue-700 text-white w-[200px] active:text-blue-500">Search</button>
   </form>
   <!-- Container to hold search results content -->
-  <div id="search-container"></div>
+  <div class="results-list">
+    <div id="output-list">
+      <div class= "">
+        <!-- book card -->
+        
+      </div>
+    </div>  
 </div>
