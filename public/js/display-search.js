@@ -1,9 +1,7 @@
-var selectType= 
-var bookQuery=
 // Search books using title input select
-function searchbooksByTitle() {
-  // var apiKey= 
-  apiURL= `https://www.googleapis.com/books/v1/volumes?q=${bookQuery}+intitle:`
+function searchBooks() {
+  var apiKey= AIzaSyCn_GY-e0YI-qPTbmDGhQevrirQqWuLkVM
+  apiURL= `https://www.googleapis.com/books/v1/volumes?q=${searchInputValue}+${searchTypeValue}&key=${apiKey}`
   fetch(apiURL)
     .then(response => response.json())
     .then(responseData => {
@@ -13,33 +11,6 @@ function searchbooksByTitle() {
   console.error("Error:", error);
   });
 
-}
-// Search books using author input select
-function searchbooksByAuthor() {
-  // var apiKey=
-  var apiURL= `https://www.googleapis.com/books/v1/volumes?q=inauthor:`
-  fetch(apiURL)
-    .then(response => response.json())
-    .then(responseData => {
-      displaySearchResults(responseData.results)
-  })
-  .catch(error => {
-    console.error("Error:", error);
-  });
-}
-
-// Search books using ISBN input select
-function searchbooksByIsbn() {
-  // var apiKey=
-  var apiURL= `https://www.googleapis.com/books/v1/volumes?q=isbn:`
-  fetch(apiURL)
-    .then(response => response.json())
-    .then(responseData => {
-      displaySearchResults(responseData.results)
-  })
-  .catch(error => {
-    console.error("Error:", error);
-  });
 }
 
 // Display book search results to page
