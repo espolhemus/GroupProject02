@@ -1,11 +1,14 @@
 // Search books using title input select
-function searchBooks() {
-  var apiKey=
+function searchBooks(searchInputValue,searchTypeValue) {
+  var apiKey = 'AIzaSyB7B-Q8ya3aud6KiRhixk3IPODDK1umTF0';
   apiURL= `https://www.googleapis.com/books/v1/volumes?q=${searchInputValue}+${searchTypeValue}&key=${apiKey}`
   fetch(apiURL)
     .then(response => response.json())
     .then(responseData => {
-      displaySearchResults(responseData.results)
+      const {items} = responseData;
+      console.log(items);
+      displaySearchResults(items)
+      
   })
   .catch(error => {
   console.error("Error:", error);
@@ -18,16 +21,24 @@ function displaySearchResults(books) {
   var resultsContainer = document.getElementById('output-list');
   resultsContainer.innerHTML = "";
 
-  books.forEeach(book => {
+  books.forEach(book => {
+    const {volumeInfo} = book;
+    // console.log(volumeInfo);
     var bookCard = document.createElement("div");
       bookCard.className= "card";
+      var image;
+      if(!volumeInfo.imageLinks.smallThumbnail){
+        image = '../public/images/default.png'
+      }else{
+        image = volumeInfo.imageLinks.smallThumbnail;
+      }
       bookCard.innerHTML = `
-        <img src="${book.smallThumbnail}" class="" alt="${book.title}">
+        <img src="${image}" class="" alt="${volumeInfo.title}">
         <div class="card-body">
-          <h4 class="card-title">"${book.title}"</h4>
-          <h5 class="card-subtitle">${book.subtitle}</h5>
-          <p>By: ${book.authors}</p>
-          <a href="${book.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
+          <h4 class="card-title">"${volumeInfo.title}"</h4>
+          <h5 class="card-description">${volumeInfo.description}</h5>
+          <p>By: ${volumeInfo.authors[0]}</p>
+          <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
           <button id="save-read" class="btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Save to Read</button>
           <button id="add-reading" class="btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Add to Reading List</button>
         <div>
@@ -49,7 +60,7 @@ function handleFormSubmit(event) {
     return;
   }
 
-  searchApi(searchInputVal, searchTypeValue);
+  searchBooks(searchInputValue, searchTypeValue);
 }
 
  // Event listener for search form submit
