@@ -1,4 +1,13 @@
 <div class="col-span-8 p-20 text-xl outline outline-1"></main>
-  <!-- Container to hold free books content -->
-  <div id="freebooks-container"></div>
+    <!-- Container to hold free books content -->
+    <div id="freebooks-container">
+        {{#each books}}
+            <div class="card">
+                <!-- Display book details as needed -->
+                <h4 class="card-title">{{this.volumeInfo.title}}</h4>
+                <p>By: {{this.volumeInfo.authors}}</p>
+            </div>
+        {{/each}}
+    </div>
 </div>
+
