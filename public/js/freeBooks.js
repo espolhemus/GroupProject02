@@ -1,6 +1,7 @@
-// Search free books using title input select
+/* // Search free books using title input select
 function searchFreeBooks() {
-    var apiKey = 'YOUR_GOOGLE_BOOKS_API_KEY';
+    console.log("Search Free Books");
+    var apiKey = 'AIzaSyAZgRIh9j8BsCvGEJ5fYneL343gD0Qwuq0';
     var genreInputValue = document.querySelector('#genre-input').value;
 
     var apiURL = `/books?genre=${genreInputValue}&key=${apiKey}`;
@@ -46,4 +47,52 @@ function handleFormSubmit(event) {
 }
 
 // Event listener for search form submit
-searchFormEl.addEventListener('submit', handleFormSubmit);
+searchFormEl.addEventListener('submit', handleFormSubmit); */
+
+function searchFreeBooks() {
+    var apiKey = 'AIzaSyAZgRIh9j8BsCvGEJ5fYneL343gD0Qwuq0'; 
+    var selectedGenres = document.querySelectorAll('input[name="genre"]:checked');
+    var genreValues = Array.from(selectedGenres).map(genre => genre.value).join(',');
+  
+    var apiURL = `/books?genre=${genreValues}&key=${apiKey}`;
+  
+    fetch(apiURL)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.text(); // Use text() instead of json()
+  })
+  .then(responseText => {
+    console.log('Response Headers:', response.headers); // Log headers for additional information
+    console.log('Response Body:', responseText); // Log the entire response body
+
+    try {
+      const responseData = JSON.parse(responseText);
+      console.log('API Response:', responseData);
+      if (Array.isArray(responseData.items)) {
+        displayFreeBooksResults(responseData.items);
+      } else {
+        console.error('Invalid response structure:', responseData);
+      }
+    } catch (parseError) {
+      console.error('Error parsing JSON:', parseError);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+  }
+  
+  const genreFormEl = document.querySelector('#genre-form');
+  
+  function handleGenreFormSubmit(event) {
+    event.preventDefault();
+    searchFreeBooks();
+  }
+  
+  // Event listener for genre form submit
+  genreFormEl.addEventListener('submit', handleGenreFormSubmit);
+  
+  
