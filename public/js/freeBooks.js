@@ -1,10 +1,9 @@
 // Search free books using title input select
 function searchFreeBooks() {
-    var apiKey = 'AIzaSyB7B-Q8ya3aud6KiRhixk3IPODDK1umTF0';
-    var searchInputValue = document.querySelector('#search-input').value;
-    var searchTypeValue = document.querySelector('#search-type').value;
+    var apiKey = 'YOUR_GOOGLE_BOOKS_API_KEY';
+    var genreInputValue = document.querySelector('#genre-input').value;
 
-    var apiURL = `http://localhost:3001/api/books/search?query=${searchInputValue}&filter=free-ebooks&key=${apiKey}`;
+    var apiURL = `/books?genre=${genreInputValue}&key=${apiKey}`;
 
     fetch(apiURL)
         .then(response => response.json())
@@ -12,13 +11,13 @@ function searchFreeBooks() {
             displayFreeBooksResults(responseData.items);
         })
         .catch(error => {
-            console.error("Error:", error);
+            console.error('Error:', error);
         });
 }
 
 // Display free book search results to page
 function displayFreeBooksResults(books) {
-    var resultsContainer = document.getElementById('output-list');
+    var resultsContainer = document.getElementById('freebooks-container');
     resultsContainer.innerHTML = "";
 
     books.forEach(book => {
@@ -43,16 +42,7 @@ const searchFormEl = document.querySelector('#search-form');
 
 function handleFormSubmit(event) {
     event.preventDefault();
-
-    var searchInputValue = document.querySelector('#search-input').value;
-    var searchTypeValue = document.querySelector('#search-type').value;
-
-    if (!searchInputValue) {
-        console.error('Requires search input value!');
-        return;
-    }
-
-    searchFreeBooks(searchInputValue, searchTypeValue);
+    searchFreeBooks();
 }
 
 // Event listener for search form submit
