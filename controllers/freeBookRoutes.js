@@ -1,8 +1,7 @@
-// freeBookRoutes.js
 const router = require('express').Router();
 const fetch = require('node-fetch');
 
-router.get('/', async(req, res) => {
+router.get('/', async (req, res) => {
     const { genre } = req.query;
 
     try {
