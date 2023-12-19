@@ -16,7 +16,7 @@ router.put('/', async (req, res) => {
             {
                 where: {
                     UserID : req.session.user_id,
-                    ISBN : req.body.ISBN
+                    ISBN : req.body.Isbn
                 }
             })
         } else if (req.body.collectionName == 'WantsToRead'){
@@ -27,7 +27,7 @@ router.put('/', async (req, res) => {
             {
                 where: {
                     UserID : req.session.user_id,
-                    ISBN : req.body.ISBN
+                    ISBN : req.body.Isbn
                 }
             })
         }
