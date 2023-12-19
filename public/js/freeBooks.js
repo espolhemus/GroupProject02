@@ -1,6 +1,6 @@
 // Search free books using title input select
 function searchFreeBooks() {
-    var apiKey = 'API_KEY';
+    var apiKey = 'AIzaSyB7B-Q8ya3aud6KiRhixk3IPODDK1umTF0';
     var searchInputValue = document.querySelector('#search-input').value;
     var searchTypeValue = document.querySelector('#search-type').value;
 

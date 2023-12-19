@@ -43,6 +43,7 @@ function displaySearchResults(books) {
           <button id="add-reading" class="btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Add to Reading List</button>
         <div>
       `
+      resultsContainer.append(bookCard);
   });
 
 }
