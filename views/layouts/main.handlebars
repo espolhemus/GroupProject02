@@ -11,18 +11,19 @@
 </head>
 
 <body>
-  <main class="grid grid-cols-8 gap-4 m-2">
-    <header class="col-span-8"><br>
-      <h1 class="col-span-8 text-center text-6xl font-extrabold">
-        Book <i class="fa-solid fa-book-open-reader" style="color: #511f29;"></i> Master
+  <main class="grid grid-cols-8 gap-4">
+    <header class="col-span-8"><br><br>
+      <h1 class="col-span-8 text-center text-7xl font-extrabold">
+      <span class="bg-black bg-opacity-60 rounded-xl text-[--brown] text-decoration-line: underline">&nbsp&nbsp Book <i class="fa-solid fa-book-open-reader" style="color: #3C455C"></i> Master &nbsp&nbsp</span>
       </h1><br>
-      <h2 class="col-span-8 text-center text-3xl">
-        Welcome, {{#if logged_in}} {{name}}! {{else}} Potential book master!{{/if}}
-      </h2><br><br>
-      <nav class="col-span-8 space-x-10 text-center text-xl">
-        <a href="/" id='homepage-nav' class="col-span-2 w-[100px] hover:text-blue-400">My Homepage</a>
-        <a href="/search" id='search-nav' class="col-span-2 w-[100px] hover:text-blue-400">Search For Books</a>
-        <a href="/books" id='freebooks-nav' class="col-span-2 w-[100px] hover:text-blue-400">Free Books</a>
+      <h2 class="col-span-8 text-center text-[--amber] text-3xl font-serif">
+        <span class="bg-black bg-opacity-60 rounded-xl">&nbsp Welcome, {{#if logged_in}} {{name}}! {{else}} Potential book master! &nbsp{{/if}}</spans>
+      </h2>
+      </div><br><br><br>  
+      <nav class="col-span-8 space-x-10 text-center text-xl bg-[--night]">
+        <a href="/" id='homepage-nav' class="col-span-2 w-[100px] text-white hover:text-blue-400">My Homepage</a>
+        <a href="/search" id='search-nav' class="col-span-2 w-[100px] text-white hover:text-blue-400">Search For Books</a>
+        <a href="/books" id='freebooks-nav' class="col-span-2 w-[100px] text-white hover:text-blue-400">Free Books</a>
       {{#if logged_in}} 
         <button id="logout" class="col-span-2 w-[100px] hover:text-blue-400">Logout</button>
       {{/if}}
