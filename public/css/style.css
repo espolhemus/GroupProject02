@@ -1,3 +1,12 @@
-.current {
-  text-decoration: underline;
+/* Color theme variables */
+:root {
+  --white: #DDB2;
+  --silver: #9AACBB;
+  --amber: #B37C57;
+  --night: #3C455C;
+  --brown: #60412B;
+}
+
+body {
+  background-color: #DDB2;
 }
