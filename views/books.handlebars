@@ -1,13 +1,27 @@
 <div class="col-span-8 p-20 text-xl outline outline-1"></main>
     <!-- Container to hold free books content -->
-    <div id="freebooks-container">
+    <div id="freebooks-container" class="max-w-md mx-auto overflow-y-auto mt-4 p-4 border rounded">
         {{#each books}}
-            <div class="card">
+            <div class="card mb-4">
                 <!-- Display book details as needed -->
                 <h4 class="card-title">{{this.volumeInfo.title}}</h4>
                 <p>By: {{this.volumeInfo.authors}}</p>
             </div>
         {{/each}}
     </div>
+
+    <!-- Add the genre form -->
+    <form id="genre-form">
+      <label for="genre-input">Select Genres:</label>
+      <input type="checkbox" name="genre" value="fiction"> Fiction
+      <input type="checkbox" name="genre" value="nonfiction"> Non-Fiction
+      <input type="checkbox" name="genre" value="fantasy"> Fantasy
+      <input type="checkbox" name="genre" value="mystery"> Mystery
+      <input type="checkbox" name="genre" value="sci-fi"> Sci-Fi
+      <input type="checkbox" name="genre" value="history"> History
+  
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
+    </form>
 </div>
+
 
