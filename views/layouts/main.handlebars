@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Master</title>
   <link rel="stylesheet" href="/css/style.css">
+  <script src="https://kit.fontawesome.com/c5ba532b80.js" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -13,7 +14,7 @@
   <main class="grid grid-cols-8 gap-4 m-2">
     <header class="col-span-8"><br>
       <h1 class="col-span-8 text-center text-6xl font-extrabold">
-        Book Master
+        Book <i class="fa-solid fa-book-open-reader" style="color: #511f29;"></i> Master
       </h1><br>
       <h2 class="col-span-8 text-center text-3xl">
         Welcome, {{#if logged_in}} {{name}} {{else}} Potential book master!{{/if}}
@@ -22,7 +23,9 @@
         <a href="/" id='homepage-nav' class="col-span-2 w-[100px] hover:text-blue-400">My Homepage</a>
         <a href="/search" id='search-nav' class="col-span-2 w-[100px] hover:text-blue-400">Search For Books</a>
         <a href="/books" id='freebooks-nav' class="col-span-2 w-[100px] hover:text-blue-400">Free Books</a>
-      {{#if logged_in}} <button id="logout" class="col-span-2 w-[100px] hover:text-blue-400">Logout</button>{{/if}}
+      {{#if logged_in}} 
+        <button id="logout" class="col-span-2 w-[100px] hover:text-blue-400">Logout</button>
+      {{/if}}
       </nav>
     </header>
 
