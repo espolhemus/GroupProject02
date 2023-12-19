@@ -1,11 +1,14 @@
 // Search books using title input select
-function searchBooks(searchInputValue, searchTypeValue) {
-  var apiKey= 'AIzaSyCn_GY-e0YI-qPTbmDGhQevrirQqWuLkVM';
+function searchBooks(searchInputValue,searchTypeValue) {
+  var apiKey = 'AIzaSyB7B-Q8ya3aud6KiRhixk3IPODDK1umTF0';
   apiURL= `https://www.googleapis.com/books/v1/volumes?q=${searchInputValue}+${searchTypeValue}&key=${apiKey}`
   fetch(apiURL)
     .then(response => response.json())
     .then(responseData => {
-      displaySearchResults(responseData.results)
+      const {items} = responseData;
+      console.log(items);
+      displaySearchResults(items)
+      
   })
   .catch(error => {
   console.error("Error:", error);
@@ -19,22 +22,29 @@ function displaySearchResults(books) {
   var resultsContainer = document.getElementById('output-list');
   resultsContainer.innerHTML = "";
 
-  const [volumeInfo]=books;
-
-  books.forEeach(volumeInfo => {
+  books.forEach(book => {
+    const {volumeInfo} = book;
+    // console.log(volumeInfo);
     var bookCard = document.createElement("div");
       bookCard.className= "card";
+      var image;
+      if(!volumeInfo.imageLinks.smallThumbnail){
+        image = '../public/images/default.png'
+      }else{
+        image = volumeInfo.imageLinks.smallThumbnail;
+      }
       bookCard.innerHTML = `
-        <img src="${volumeInfo.image.Links.smallThumbnail}" class="" alt="${volumeInfo.title}">
+        <img src="${image}" class="" alt="${volumeInfo.title}">
         <div class="card-body">
           <h4 class="card-title">"${volumeInfo.title}"</h4>
-          <h5 class="card-subtitle">${volumeInfo.subtitle}</h5>
-          <p>By: ${volumeInfo.authors}</p>
-          <a href="${infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
+          <h5 class="card-description">${volumeInfo.description}</h5>
+          <p>By: ${volumeInfo.authors[0]}</p>
+          <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
           <button id="save-read" class="btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Save to Read</button>
           <button id="add-reading" class="btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Add to Reading List</button>
         <div>
       `
+      resultsContainer.append(bookCard);
   });
 
 }
