@@ -1,3 +1,7 @@
+const router = require('express').Router();
+const { Collection, User, Review, Book } = require('../models');
+const withAuth = require('../utils/auth');
+
 router.get('/', async (req, res) => {
     const { genre } = req.query;
     const genres = genre ? genre.split(',') : []; // Split the genre string into an array
@@ -20,5 +24,5 @@ router.get('/', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
-  
 
+  module.exports = router;
