@@ -48,7 +48,7 @@ function displaySearchResults(books) {
           <h5 class="card-description">${description}</h5>
           <p>By: ${volumeInfo.authors}</p>
           <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
-          <button id="testBtn" data-volumeInfoTitle="${volumeInfo.title}"  class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Test Button</button>
+          <button id="testBtn" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${volumeInfo.authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher"${volumeInfo.publisher} data-volumePageCount"${volumeInfo.pageCount} data-volumePublishedDate"${volumeInfo.publishedDate}" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Test Button</button>
           <button id="save-read" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
           <button id="add-reading" class="want-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Want to Read</button>
         <div><br><hr>
@@ -61,13 +61,54 @@ function displaySearchResults(books) {
 
   // Add an event listener to the button
   testButtonData.forEach(button => {
-    button.addEventListener('click',() => {
-      console.log("Event listener working")
-      const testButtonVolumeInfoTitle = button.dataset.volumeInfoTitle;
-      console.log(testButtonVolumeInfoTitle)
-    });
-  });
+    button.addEventListener('click',(event) => {
+      console.log("Event listener working");
+      const bookISBN = event.target.dataset.volumeisbn;
+      console.log(bookISBN);
+      const bookTitle = event.target.dataset.volumetitle;
+      console.log(bookTitle);
+      const bookDescription = event.target.dataset.volumedescription;
+      console.log(bookDescription);
+      const bookAuthor = event.target.dataset.volumeauthors;
+      console.log(bookAuthor);
+      const bookInfoLink = event.target.dataset.volumeinfolink;
+      console.log(bookInfoLink);
+      const bookImageURL = event.target.dataset.volumeimagelink;
+      console.log(bookImageURL);
+      const bookPublisherName = event.target.dataset.volumepublisher;
+      console.log(bookPublisherName);
+      const bookPages= event.target.dataset.volumepagecount;
+      console.log(bookPages);
+      const bookPublicationDate= event.target.dataset.volumepublisheddate;
+      console.log(bookPublicationDate);
 
+      // Create an object representing the book
+      const book = { bookISBN, bookTitle, bookAuthor, bookDescription, bookInfoLink, bookImageURL, bookPublisherName, bookPages, bookPublicationDate };
+
+      // Create an array of objects to be passed to the database
+      const bookData = [book]; 
+
+      console.log(bookData)
+
+      // Send the volume data to the database via the POST route
+      fetch('/api/bookRoutes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bookData)
+      })
+    })
+    // .then(response => response.json())
+    // .then(data => {
+    //   // Handle the response from the server
+    //   console.log(data);
+    // })
+    // .catch(error => {
+    //   // Handle any errors
+    //   console.error(error);
+    // });
+    });
 }
 
 const searchFormEl = document.querySelector('#search-form');
