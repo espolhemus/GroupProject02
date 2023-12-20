@@ -50,49 +50,44 @@ function handleFormSubmit(event) {
 searchFormEl.addEventListener('submit', handleFormSubmit); */
 
 function searchFreeBooks() {
-    var apiKey = 'AIzaSyAZgRIh9j8BsCvGEJ5fYneL343gD0Qwuq0'; 
-    var selectedGenres = document.querySelectorAll('input[name="genre"]:checked');
-    var genreValues = Array.from(selectedGenres).map(genre => genre.value).join(',');
-  
-    var apiURL = `/books?genre=${genreValues}&key=${apiKey}`;
-  
-    fetch(apiURL)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.text(); // Use text() instead of json()
-  })
-  .then(responseText => {
-    console.log('Response Headers:', response.headers); // Log headers for additional information
-    console.log('Response Body:', responseText); // Log the entire response body
+  var apiKey = 'AIzaSyAZgRIh9j8BsCvGEJ5fYneL343gD0Qwuq0'; // Replace with your API key
+  var selectedGenres = document.querySelectorAll('input[name="genre"]:checked');
+  var genreValues = Array.from(selectedGenres).map(genre => genre.value).join(',');
 
-    try {
-      const responseData = JSON.parse(responseText);
-      console.log('API Response:', responseData);
-      if (Array.isArray(responseData.items)) {
-        displayFreeBooksResults(responseData.items);
-      } else {
-        console.error('Invalid response structure:', responseData);
-      }
-    } catch (parseError) {
-      console.error('Error parsing JSON:', parseError);
-    }
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+  if (genreValues) {
+      var apiURL = `/api/free-books?genre=${genreValues}&key=${apiKey}&_=${Date.now()}`;
 
+      fetch(apiURL)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json();
+          })
+          .then(parsedResponse => {
+              console.log('Parsed Response:', parsedResponse);
+              renderBooks(parsedResponse.books);
+          })
+          .catch(error => {
+              console.error('Error fetching books:', error);
+          });
   }
-  
-  const genreFormEl = document.querySelector('#genre-form');
-  
-  function handleGenreFormSubmit(event) {
-    event.preventDefault();
-    searchFreeBooks();
-  }
-  
-  // Event listener for genre form submit
-  genreFormEl.addEventListener('submit', handleGenreFormSubmit);
-  
-  
+}
+
+function renderBooks(books) {
+  const template = Handlebars.compile(document.getElementById('books-template').innerHTML);
+  const freeBooksContainer = document.getElementById('freebooks-container');
+
+  freeBooksContainer.innerHTML = template({ books });
+}
+
+const genreFormEl = document.querySelector('#genre-form');
+
+function handleGenreFormSubmit(event) {
+  event.preventDefault();
+  searchFreeBooks();
+}
+
+// Event listener for genre form submit
+genreFormEl.addEventListener('submit', handleGenreFormSubmit);
+
