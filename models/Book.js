@@ -8,6 +8,7 @@ Book.init(
     bookIsbn: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       primaryKey: true,
     },
     bookTitle: {
@@ -23,7 +24,7 @@ Book.init(
         allowNull: true,
       },      
     bookPages: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: true,
       },
     bookImageUrl: {
