@@ -48,6 +48,7 @@ function displaySearchResults(books) {
           <h5 class="card-description">${description}</h5>
           <p>By: ${volumeInfo.authors}</p>
           <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
+          <button id="testBtn" data-volumeInfoTitle="${volumeInfo.title}"  class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Test Button</button>
           <button id="save-read" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
           <button id="add-reading" class="want-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Want to Read</button>
         <div><br><hr>
@@ -55,6 +56,17 @@ function displaySearchResults(books) {
     resultsContainer.append(bookCard);
   });
 
+  // Access the testBtn element
+  const testButtonData = document.querySelectorAll('#testBtn')
+
+  // Add an event listener to the button
+  testButtonData.forEach(button => {
+    button.addEventListener('click',() => {
+      console.log("Event listener working")
+      const testButtonVolumeInfoTitle = button.dataset.volumeInfoTitle;
+      console.log(testButtonVolumeInfoTitle)
+    });
+  });
 
 }
 
