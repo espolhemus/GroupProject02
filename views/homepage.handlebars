@@ -1,16 +1,24 @@
-    
-    {{!-- Iterates through collection lists and displays information  --}}
-    <main class="col-span-8 flex mb-4 p-5 outline outline-1">
-      <div class="w-full p-2 m-2 outline outline-1">
-        <h3 class="text-2xl text-center">Have Read:</h3><br>
-        {{#each hasRead as |has|}}
-        {{>collections}}
-        {{/each}}
-      </div> 
-      <div class="w-full p-2 m-2 outline outline-1">
-        <h3 class="text-2xl text-center">Want To Read:</h3><br>
-        {{#each wantsToRead as |want|}}
-        {{>collections}}
-        {{/each}}
-      </div>
-    </main>
+{{!-- Iterates through collection lists and displays information --}}
+<main class="col-span-8 flex mb-4 p-5 outline outline-1">
+  <div class="w-full p-2 m-2 outline outline-1">
+    <h3 class="text-2xl text-center">Have Read:</h3><br>
+    {{#if hasRead}}
+    {{#each hasRead as |has|}}
+    {{>collections}}
+    {{/each}}
+    {{else}}
+    <p class="text-2xl text-center font-mono">Search for some books and add them to this list!</p>
+    {{/if}}
+  </div>
+  <div class="w-full p-2 m-2 outline outline-1">
+    <h3 class="text-2xl text-center">Want To Read:</h3><br>
+    {{#if wantsToRead}}
+    {{#each wantsToRead as |want|}}
+    {{>collections}}
+    {{/each}}
+    {{else}}
+    <p class="text-2xl text-center font-mono">Search for some books and add them to this list!</p>
+    {{/if}}
+
+  </div>
+</main>

@@ -8,6 +8,16 @@
   <link rel="stylesheet" href="/css/style.css">
   <script src="https://kit.fontawesome.com/c5ba532b80.js" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Include Handlebars template -->
+  <script id="books-template" type="text/x-handlebars-template">
+      {{#each books}}
+          <div class="card mb-4">
+              <!-- Display book details as needed -->
+              <h4 class="card-title">{{this.volumeInfo.title}}</h4>
+              <p>By: {{this.volumeInfo.authors}}</p>
+          </div>
+      {{/each}}
+  </script>
 </head>
 
 <body>
@@ -40,8 +50,6 @@
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
-  <script src="/js/books.js"></script>
-  <script src="/js/freeBooks.js"></script>
   {{/if}}
 
 </body>

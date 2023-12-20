@@ -1,11 +1,17 @@
-{{!-- pulls out book information from each collection  --}}
-<div>
-    <h3>{{book.bookTitle}} by {{book.bookAuthor}}</h3>
-    <p>Genre: {{book.bookGenre}}</p>
-    <p>Pages: {{book.bookPages}}</p>
-    <p>ISBN:  {{book.bookIsbn}}</p>
-    <a href="{{book.eBookUrl}}"><img src="{{book.bookImageUrl}}"></a>
-    <p>Description: {{book.bookDescription}}</p>
-    <p>Published by: {{book.publisherName}} on {{format_date book.publicationDate}}</p>
-    <br><hr>
+{{!-- pulls out book information from each collection --}}
+<div class = "h-96"><hr><br>
+    <h3 class="text-xl text-center w-200 current">{{book.bookTitle}} by {{book.bookAuthor}}</h3><br>
+    <div class="flex flex-row">
+        <div class="w-1/5 h-48  "><a  href="{{book.eBookUrl}}"><img  class = "size-full border-4 border-indigo-500/100"src="{{book.bookImageUrl}}"></a></div>
+        <div class="w-4/5 pl-2 ">
+            <p class="h-24 text-wrap text-ellipsis overflow-hidden ...">Description: {{book.bookDescription}}</p>
+            <p >ISBN: {{book.bookIsbn}}</p>
+            <p>Pages: {{book.bookPages}}</p>
+            <p>Published by: {{book.publisherName}} {{#if book.publicationDate}}on {{format_date book.publicationDate}} {{/if}}</p>
+        </div>
+    </div>
+    <br>
+    
 </div>
+
+

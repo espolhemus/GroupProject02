@@ -18,16 +18,12 @@ Collection.init(
         key: 'userId',
       },
     },
-    bookId: {
-      type: DataTypes.INTEGER,
+    bookIsbn: {
+      type: DataTypes.STRING,
       references: {
         model: 'book',
-        key: 'bookId',
+        key: 'bookIsbn',
       },
-    },
-    collectionName: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     dateAdded: {
       type: DataTypes.DATE,

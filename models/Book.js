@@ -5,12 +5,12 @@ class Book extends Model {}
 
 Book.init(
   {
-    bookId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-      },
+    bookIsbn: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      primaryKey: true,
+    },
     bookTitle: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -21,35 +21,31 @@ Book.init(
       },
     bookGenre: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },      
     bookPages: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-    bookIsbn: {
         type: DataTypes.STRING,
         allowNull: true,
       },
     bookImageUrl: {
         type: DataTypes.CHAR,
-        allowNull: true,
+        allowNull: false,
       },
     bookDescription: {
         type: DataTypes.TEXT,
-        allowNull: true,
+        allowNull: false,
       },
     publicationDate: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
       },
     publisherName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
     eBookUrl: {
         type: DataTypes.CHAR,
-        allowNull: true,
+        allowNull: false,
       },
   },
   {

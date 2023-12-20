@@ -18,11 +18,11 @@ Review.init(
           key: 'userId',
         },
       },
-    bookId: {
-        type: DataTypes.INTEGER,
+    bookIsbn: {
+        type: DataTypes.STRING,
         references: {
           model: 'book',
-          key: 'bookId',
+          key: 'bookIsbn',
         },
       },  
     

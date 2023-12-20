@@ -18,7 +18,6 @@ router.get('/', withAuth, async (req, res) => {
 
     // Serialize data so the template can read it
     const collections = collectionData.map((collection) =>collection.get({ plain: true }));
-    
     // pull out the collections with hasread = true
     const hasRead = collections.filter(collection => {
       if(collection.hasRead){
@@ -49,7 +48,7 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-
+// If user logged in redirect to home else redirect to login
 router.get('/login', (req, res) => {
   if (req.session.logged_in){
     res.redirect('/')

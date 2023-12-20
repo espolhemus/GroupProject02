@@ -4,19 +4,26 @@ const withAuth = require('../utils/auth');
 const fetch = require('node-fetch');
 
 router.get('/', async (req, res) => {
-    const { genre, APIkey } = req.query;
-    const genres = genre ? genre.split(',') : [];
-
+    const { genre, apiKey} = req.query;
+    console.log(genre);
+    const genres = genre ? genre.split(',') : []; // Split the genre string into an array
+    
     try {
-        const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${genres.map(g => `subject:${g}`).join('+')}&filter=free-ebooks&key=${APIkey}`;
+      // Use genres array to construct the API URL
+      const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${genres.map(g => `subject:${g}`).join('+')}&filter=free-ebooks`;
+      
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      const {items} = data;
+      console.log(items);
 
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-
-        // Set Content-Type to JSON
-        res.setHeader('Content-Type', 'application/json');
-
-        res.json({ books: data.items || [] });
+      
+      res.render('books', {
+        logged_in: req.session.logged_in,
+        user_id: req.session.user_id,
+        name: req.session.name,
+        books: data.items || [],
+      });
     } catch (err) {
         console.error('Error fetching books:', err);
         res.status(500).json({ error: 'Internal Server Error' });
