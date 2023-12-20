@@ -4,16 +4,17 @@ const withAuth = require('../utils/auth');
 
 
 router.get('/', async (req, res) => {
-    const { genre } = req.query;
+    const { genre, apiKey} = req.query;
+    console.log(genre);
     const genres = genre ? genre.split(',') : []; // Split the genre string into an array
-  
+    
     try {
       // Use genres array to construct the API URL
       const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${genres.map(g => `subject:${g}`).join('+')}&filter=free-ebooks`;
-  
+      
       const response = await fetch(apiUrl);
       const data = await response.json();
-  
+      console.log(data);
       res.render('books', {
         logged_in: req.session.logged_in,
         user_id: req.session.user_id,

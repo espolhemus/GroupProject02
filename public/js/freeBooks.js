@@ -63,22 +63,22 @@ function searchFreeBooks() {
     }
     return response.text(); // Use text() instead of json()
   })
-  .then(responseText => {
-    console.log('Response Headers:', response.headers); // Log headers for additional information
-    console.log('Response Body:', responseText); // Log the entire response body
+  // .then(responseText => {
+  //   console.log('Response Headers:', responseText.headers); // Log headers for additional information
+  //   console.log('Response Body:', responseText); // Log the entire response body
 
-    try {
-      const responseData = JSON.parse(responseText);
-      console.log('API Response:', responseData);
-      if (Array.isArray(responseData.items)) {
-        displayFreeBooksResults(responseData.items);
-      } else {
-        console.error('Invalid response structure:', responseData);
-      }
-    } catch (parseError) {
-      console.error('Error parsing JSON:', parseError);
-    }
-  })
+  //   try {
+  //     const responseData = JSON.parse(responseText);
+  //     console.log('API Response:', responseData);
+  //     if (Array.isArray(responseData.items)) {
+  //       displayFreeBooksResults(responseData.items);
+  //     } else {
+  //       console.error('Invalid response structure:', responseData);
+  //     }
+  //   } catch (parseError) {
+  //     console.error('Error parsing JSON:', parseError);
+  //   }
+  // })
   .catch(error => {
     console.error('Error:', error);
   });
