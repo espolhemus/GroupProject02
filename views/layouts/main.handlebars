@@ -17,15 +17,15 @@
       <span class="bg-black bg-opacity-60 rounded-xl text-[--amber] text-decoration-line: underline">&nbsp&nbsp Book <i class="fa-solid fa-book-open-reader" style="color: #3C455C"></i> Master &nbsp&nbsp</span>
       </h1><br>
       <h2 class="col-span-8 text-center text-[--amber] text-3xl font-serif">
-        <span class="bg-black bg-opacity-60 rounded-xl">&nbsp Welcome, {{#if logged_in}} {{name}}! {{else}} Potential book master! &nbsp{{/if}}</spans>
+        <span class="bg-black bg-opacity-60 rounded-md">&nbsp Welcome, {{#if logged_in}} {{name}}! {{else}} Potential book master! &nbsp{{/if}}</spans>
       </h2>
       </div><br><br><br>  
-      <nav class="col-span-8 space-x-10 text-center text-xl bg-[--night] outline outline-1 outline-[--amber]">
-        <a href="/" id='homepage-nav' class="col-span-2 w-[100px] text-[white] hover:text-[--silver] active:opacity-50">My Homepage</a>
-        <a href="/search" id='search-nav' class="col-span-2 w-[100px] text-[white] hover:text-[--silver] active:opacity-50">Search For Books</a>
-        <a href="/books" id='freebooks-nav' class="col-span-2 w-[100px] text-[white] hover:text-[--silver] active:opacity-50">Free Books</a>
+      <nav class="col-span-8 space-x-10 p-1 opacity-80 text-center text-xl bg-[--night] outline outline-1 outline-[--amber]">
+        <a href="/" id='homepage-nav' class="col-span-2 w-[100px] font-bold text-[white] hover:text-[--silver] active:opacity-50">My Homepage</a>
+        <a href="/search" id='search-nav' class="col-span-2 w-[100px] font-bold text-[white] hover:text-[--silver] active:opacity-50">Search For Books</a>
+        <a href="/books" id='freebooks-nav' class="col-span-2 w-[100px] font-bold text-[white] hover:text-[--silver] active:opacity-50">Free Books</a>
       {{#if logged_in}} 
-        <button id="logout" class="col-span-2 w-[100px] text-[white] hover:text-[--silver]">Logout</button>
+        <button id="logout" class="col-span-2 w-[100px] font-bold text-[white] hover:text-[--silver] active:opacity-50">Logout</button>
       {{/if}}
       </nav>
     </header>
