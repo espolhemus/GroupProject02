@@ -1,10 +1,10 @@
-// Search free books using title input select
+/* // Search free books using title input select
 function searchFreeBooks() {
-    var apiKey = 'AIzaSyB7B-Q8ya3aud6KiRhixk3IPODDK1umTF0';
-    var searchInputValue = document.querySelector('#search-input').value;
-    var searchTypeValue = document.querySelector('#search-type').value;
+    console.log("Search Free Books");
+    var apiKey = 'AIzaSyAZgRIh9j8BsCvGEJ5fYneL343gD0Qwuq0';
+    var genreInputValue = document.querySelector('#genre-input').value;
 
-    var apiURL = `http://localhost:3001/api/books/search?query=${searchInputValue}&filter=free-ebooks&key=${apiKey}`;
+    var apiURL = `/books?genre=${genreInputValue}&key=${apiKey}`;
 
     fetch(apiURL)
         .then(response => response.json())
@@ -12,13 +12,13 @@ function searchFreeBooks() {
             displayFreeBooksResults(responseData.items);
         })
         .catch(error => {
-            console.error("Error:", error);
+            console.error('Error:', error);
         });
 }
 
 // Display free book search results to page
 function displayFreeBooksResults(books) {
-    var resultsContainer = document.getElementById('output-list');
+    var resultsContainer = document.getElementById('freebooks-container');
     resultsContainer.innerHTML = "";
 
     books.forEach(book => {
@@ -43,17 +43,56 @@ const searchFormEl = document.querySelector('#search-form');
 
 function handleFormSubmit(event) {
     event.preventDefault();
-
-    var searchInputValue = document.querySelector('#search-input').value;
-    var searchTypeValue = document.querySelector('#search-type').value;
-
-    if (!searchInputValue) {
-        console.error('Requires search input value!');
-        return;
-    }
-
-    searchFreeBooks(searchInputValue, searchTypeValue);
+    searchFreeBooks();
 }
 
 // Event listener for search form submit
-searchFormEl.addEventListener('submit', handleFormSubmit);
+searchFormEl.addEventListener('submit', handleFormSubmit); */
+
+function searchFreeBooks() {
+    var apiKey = 'AIzaSyAZgRIh9j8BsCvGEJ5fYneL343gD0Qwuq0'; 
+    var selectedGenres = document.querySelectorAll('input[name="genre"]:checked');
+    var genreValues = Array.from(selectedGenres).map(genre => genre.value).join(',');
+  
+    var apiURL = `/books?genre=${genreValues}&key=${apiKey}`;
+  
+    fetch(apiURL)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.text(); // Use text() instead of json()
+  })
+  .then(responseText => {
+    console.log('Response Headers:', response.headers); // Log headers for additional information
+    console.log('Response Body:', responseText); // Log the entire response body
+
+    try {
+      const responseData = JSON.parse(responseText);
+      console.log('API Response:', responseData);
+      if (Array.isArray(responseData.items)) {
+        displayFreeBooksResults(responseData.items);
+      } else {
+        console.error('Invalid response structure:', responseData);
+      }
+    } catch (parseError) {
+      console.error('Error parsing JSON:', parseError);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+  }
+  
+  const genreFormEl = document.querySelector('#genre-form');
+  
+  function handleGenreFormSubmit(event) {
+    event.preventDefault();
+    searchFreeBooks();
+  }
+  
+  // Event listener for genre form submit
+  genreFormEl.addEventListener('submit', handleGenreFormSubmit);
+  
+  
