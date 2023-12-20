@@ -27,7 +27,7 @@ function displaySearchResults(books) {
     var bookCard = document.createElement("div");
     bookCard.className = "card";
     var image;
-    
+
     if (!volumeInfo.imageLinks) {
       image = 'images/default.png'
     } else {
@@ -35,9 +35,9 @@ function displaySearchResults(books) {
     }
 
     var description;
-    if (!volumeInfo.description){
+    if (!volumeInfo.description) {
       description = 'No description included.'
-    }else{
+    } else {
       description = volumeInfo.description;
     }
 // stash in case I break already working code
@@ -65,22 +65,23 @@ function displaySearchResults(books) {
           <p>By: ${volumeInfo.authors}</p>
           <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
           <button id="have-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${volumeInfo.authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${volumeInfo.publisher}" data-volumePageCount="${volumeInfo.pageCount}" data-volumePublishedDate="${volumeInfo.publishedDate}" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
-          <button id="add-reading" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${volumeInfo.authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${volumeInfo.publisher}" data-volumePageCount="${volumeInfo.pageCount}" data-volumePublishedDate="${volumeInfo.publishedDate}" class="want-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Want to Read</button>
+          <button id="want-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${volumeInfo.authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${volumeInfo.publisher}" data-volumePageCount="${volumeInfo.pageCount}" data-volumePublishedDate="${volumeInfo.publishedDate}" class="want-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Want to Read</button>
         <div><br><hr>
       `
+
     resultsContainer.append(bookCard);
   });
 
   // Access the testBtn element
-  // const testButtonData = document.querySelectorAll('#testBtn')
   const haveReadData = document.querySelectorAll('#have-read')
+
 
   // Add an event listener to the button
   haveReadData.forEach(button => {
-    button.addEventListener('click',(event) => {
+    button.addEventListener('click', async (event) => {
       console.log("Event listener working");
-      const bookISBN = event.target.dataset.volumeisbn;
-      console.log(bookISBN);
+      const bookIsbn = event.target.dataset.volumeisbn;
+      console.log(bookIsbn);
       const bookTitle = event.target.dataset.volumetitle;
       console.log(bookTitle);
       const bookDescription = event.target.dataset.volumedescription;
@@ -89,62 +90,53 @@ function displaySearchResults(books) {
       console.log(bookAuthor);
       const bookInfoLink = event.target.dataset.volumeinfolink;
       console.log(bookInfoLink);
-      const bookImageURL = event.target.dataset.volumeimagelink;
-      console.log(bookImageURL);
+      const bookImageUrl = event.target.dataset.volumeimagelink;
+      console.log(bookImageUrl);
       const bookPublisherName = event.target.dataset.volumepublisher;
       console.log(bookPublisherName);
-      const bookPages= event.target.dataset.volumepagecount;
+      const bookPages = event.target.dataset.volumepagecount;
       console.log(bookPages);
-      const bookPublicationDate= event.target.dataset.volumepublisheddate;
+      const bookPublicationDate = event.target.dataset.volumepublisheddate;
       console.log(bookPublicationDate);
-      const hasReadFlag = true
+      const hasRead = true
 
       // Create an object representing the book
-      const book = { bookISBN, bookTitle, bookAuthor, bookDescription, bookInfoLink, bookImageURL, bookPublisherName, bookPages, bookPublicationDate };
-      
-
-      // Create an array of objects to be passed to the database
-      const bookData = [book]; 
-
-      console.log(bookData)
+      const book = [bookIsbn, bookTitle, bookAuthor, bookDescription, bookInfoLink, bookImageUrl, bookPublisherName, bookPages, bookPublicationDate];
 
       // Send the volume data to the database via the POST route
-      fetch('/api/bookRoutes', {
+
+      const response = await fetch('/api/book', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(bookData)
+        body: JSON.stringify(book)
       })
 
-      // Create an object representing the hasRead status of each book
-      const collection = { bookISBN, hasReadFlag }
+      console.log(bookIsbn + ' ' + bookIsbn);
 
-      // Create an array of objects to be passed to the database
-      const collectionData = [collection]
-      console.log(collectionData)
+      const collection = [bookIsbn, hasRead]
 
-      // Send the collection data to the database via the POST route
-      fetch('/api/collectionRoutes', {
+      const response2 = await fetch('/api/collection', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(collectionData)
+        body: JSON.stringify(collection)
       })
     })
-  });  
-    
+  });
+
   // Access the testBtn element
-  // const testButtonData = document.querySelectorAll('#testBtn')
-  const wantToReadData = document.querySelectorAll('#add-reading')
+  const wantToReadData = document.querySelectorAll('#want-read')
+
 
   // Add an event listener to the button
   wantToReadData.forEach(button => {
-    button.addEventListener('click',(event) => {
+    button.addEventListener('click', async (event) => {
       console.log("Event listener working");
-      const bookISBN = event.target.dataset.volumeisbn;
-      console.log(bookISBN);
+      const bookIsbn = event.target.dataset.volumeisbn;
+      console.log(bookIsbn);
       const bookTitle = event.target.dataset.volumetitle;
       console.log(bookTitle);
       const bookDescription = event.target.dataset.volumedescription;
@@ -153,53 +145,50 @@ function displaySearchResults(books) {
       console.log(bookAuthor);
       const bookInfoLink = event.target.dataset.volumeinfolink;
       console.log(bookInfoLink);
-      const bookImageURL = event.target.dataset.volumeimagelink;
-      console.log(bookImageURL);
+      const bookImageUrl = event.target.dataset.volumeimagelink;
+      console.log(bookImageUrl);
       const bookPublisherName = event.target.dataset.volumepublisher;
       console.log(bookPublisherName);
-      const bookPages= event.target.dataset.volumepagecount;
+      const bookPages = event.target.dataset.volumepagecount;
       console.log(bookPages);
-      const bookPublicationDate= event.target.dataset.volumepublisheddate;
+      const bookPublicationDate = event.target.dataset.volumepublisheddate;
       console.log(bookPublicationDate);
-      const hasReadFlag = false
+      const hasRead = false
 
       // Create an object representing the book
-      const book = { bookISBN, bookTitle, bookAuthor, bookDescription, bookInfoLink, bookImageURL, bookPublisherName, bookPages, bookPublicationDate };
-      
-
-      // Create an array of objects to be passed to the database
-      const bookData = [book]; 
-
-      console.log(bookData)
+      const book = [bookIsbn, bookTitle, bookAuthor, bookDescription, bookInfoLink, bookImageUrl, bookPublisherName, bookPages, bookPublicationDate];
 
       // Send the volume data to the database via the POST route
-      fetch('/api/bookRoutes', {
+
+      const response = await fetch('/api/book', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(bookData)
+        body: JSON.stringify(book)
       })
 
-      // Create an object representing the hasRead status of each book
-      const collection = { bookISBN, hasReadFlag }
 
-      // Create an array of objects to be passed to the database
-      const collectionData = [collection]
-      console.log (collectionData)
+      const collection = [bookIsbn, hasRead]
 
-      // Send the collection data to the database via the POST route
-      fetch('/api/collectionRoutes', {
+      const response2 = await fetch('/api/collection', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(collectionData)
+        body: JSON.stringify(collection)
       })
-    })  
+    })
+
+
+
+
   });
-};
-  
+
+
+
+}
+
 const searchFormEl = document.querySelector('#search-form');
 
 function handleFormSubmit(event) {
@@ -219,9 +208,3 @@ function handleFormSubmit(event) {
 // Event listener for search form submit
 searchFormEl.addEventListener('submit', handleFormSubmit)
 
-// const haveRead = document.querySelectorAll('.have-read')
-
-// haveRead.forEach(btn => btn.addEventListener('click', haveReadHandler));
-
-// function haveReadHandler(event) {
-// }

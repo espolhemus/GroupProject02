@@ -4,18 +4,21 @@ const withAuth = require('../../utils/auth');
 
 router.post('/', async (req, res) => {
     try {
-        console.log(req.body);
-        const info = JSON.parse(req.body);
-        console.log(info);
-        // const bookData = await Book.create({
-        //     bookTitle: info[0],
-        //     bookAuthor: info[1],
-        //     bookImageUrl: info[2],
-        //     bookDescription: info[3],
-        //     eBookUrl: info[4]
-        // });
-
-        res.status(200).json(req.body);
+        
+        const info = req.body;
+        
+        const bookData = await Book.create({
+            bookIsbn: info[0],
+            bookTitle: info[1],
+            bookAuthor: info[2],
+            bookDescription: info[3],
+            eBookUrl: info[4],
+            bookImageUrl: info[5],
+            publisherName: info[6],
+            bookPages: info[7],
+            publicationDate: info[8]
+        });
+        res.status(200).json(bookData);
 
     } catch (err) {
         res.status(400).json(err)

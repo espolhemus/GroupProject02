@@ -4,7 +4,6 @@ const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try {
-    console.log('yo');
     // Show user collections and book data in each collection
     const collectionData = await Collection.findAll( {
        where: {
@@ -19,7 +18,6 @@ router.get('/', withAuth, async (req, res) => {
 
     // Serialize data so the template can read it
     const collections = collectionData.map((collection) =>collection.get({ plain: true }));
-    console.log(collections);
     // pull out the collections with hasread = true
     const hasRead = collections.filter(collection => {
       if(collection.hasRead){

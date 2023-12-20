@@ -19,15 +19,11 @@ Collection.init(
       },
     },
     bookIsbn: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       references: {
         model: 'book',
         key: 'bookIsbn',
       },
-    },
-    collectionName: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
     dateAdded: {
       type: DataTypes.DATE,
