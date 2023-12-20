@@ -26,6 +26,8 @@ function displaySearchResults(books) {
 
     var bookCard = document.createElement("div");
     bookCard.className = "card";
+
+    // Handle any information that was ommitted from search results
     var image;
 
     if (!volumeInfo.imageLinks) {
@@ -40,39 +42,53 @@ function displaySearchResults(books) {
     } else {
       description = volumeInfo.description;
     }
-// stash in case I break already working code
-    // bookCard.innerHTML = `
-    // <br>
-    //     <img src="${image}" class="" style = "width:200px; height: 200px;" alt="${volumeInfo.title}">
-    //     <div class="card-body">
-    //       <h4 class="card-title">"${volumeInfo.title}"</h4>
-    //       <h5 class="card-description">${description}</h5>
-    //       <p>By: ${volumeInfo.authors}</p>
-    //       <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
-    //       <button id="save-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${volumeInfo.authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${volumeInfo.publisher}" data-volumePageCount="${volumeInfo.pageCount}" data-volumePublishedDate="${volumeInfo.publishedDate}" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
-    //       <button id="save-read" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
-    //       <button id="add-reading" class="want-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Want to Read</button>
-    //     <div><br><hr>
-    //   `
-    // resultsContainer.append(bookCard);
+    var pages;
+    if (!volumeInfo.pageCount) {
+      pages = 'Not provided'
+    } else {
+      pages = volumeInfo.pageCount;
+    }
 
+    var publisher;
+    if (!volumeInfo.publisher) {
+      publisher = 'Not provided'
+    } else {
+      publisher = volumeInfo.publisher;
+    }
+
+    var publishedDate;
+    if (!volumeInfo.publishedDate) {
+      publishedDate = false;
+    } else {
+      publishedDate = volumeInfo.publishedDate;
+    }
+
+    var authors;
+    
+    if (!volumeInfo.authors) {
+      authors = 'Not provided.'
+    } else {
+      authors = volumeInfo.authors;
+    }
+
+    // generate card with the information and attach it to the results container 
         bookCard.innerHTML = `
     <br>
         <img src="${image}" class="" style = "width:200px; height: 200px;" alt="${volumeInfo.title}">
         <div class="card-body">
           <h4 class="card-title">"${volumeInfo.title}"</h4>
           <h5 class="card-description">${description}</h5>
-          <p>By: ${volumeInfo.authors}</p>
+          <p>Author(s): ${authors}</p>
           <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
-          <button id="have-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${volumeInfo.authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${volumeInfo.publisher}" data-volumePageCount="${volumeInfo.pageCount}" data-volumePublishedDate="${volumeInfo.publishedDate}" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
-          <button id="want-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${volumeInfo.authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${volumeInfo.publisher}" data-volumePageCount="${volumeInfo.pageCount}" data-volumePublishedDate="${volumeInfo.publishedDate}" class="want-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Want to Read</button>
+          <button id="have-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${publisher}" data-volumePageCount="${pages}" data-volumePublishedDate="${publishedDate}" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
+          <button id="want-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${publisher}" data-volumePageCount="${pages}" data-volumePublishedDate="${publishedDate}" class="want-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Want to Read</button>
         <div><br><hr>
       `
 
     resultsContainer.append(bookCard);
   });
 
-  // Access the testBtn element
+  // Access the haveRead element
   const haveReadData = document.querySelectorAll('#have-read')
 
 
@@ -100,7 +116,7 @@ function displaySearchResults(books) {
       console.log(bookPublicationDate);
       const hasRead = true
 
-      // Create an object representing the book
+      // Create an array representing the book
       const book = [bookIsbn, bookTitle, bookAuthor, bookDescription, bookInfoLink, bookImageUrl, bookPublisherName, bookPages, bookPublicationDate];
 
       // Send the volume data to the database via the POST route
@@ -113,7 +129,6 @@ function displaySearchResults(books) {
         body: JSON.stringify(book)
       })
 
-      console.log(bookIsbn + ' ' + bookIsbn);
 
       const collection = [bookIsbn, hasRead]
 
@@ -127,7 +142,7 @@ function displaySearchResults(books) {
     })
   });
 
-  // Access the testBtn element
+  // Access the want read element
   const wantToReadData = document.querySelectorAll('#want-read')
 
 
@@ -155,7 +170,7 @@ function displaySearchResults(books) {
       console.log(bookPublicationDate);
       const hasRead = false
 
-      // Create an object representing the book
+      // Create an array representing the book
       const book = [bookIsbn, bookTitle, bookAuthor, bookDescription, bookInfoLink, bookImageUrl, bookPublisherName, bookPages, bookPublicationDate];
 
       // Send the volume data to the database via the POST route
@@ -189,8 +204,10 @@ function displaySearchResults(books) {
 
 }
 
+
 const searchFormEl = document.querySelector('#search-form');
 
+// handle form submit
 function handleFormSubmit(event) {
   event.preventDefault();
 

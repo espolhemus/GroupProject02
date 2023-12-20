@@ -2,10 +2,17 @@ const router = require('express').Router();
 const { Book } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// Want to read or have read button clicked. Book will be added to the database
 router.post('/', async (req, res) => {
     try {
-        
         const info = req.body;
+        var date = info[8];
+
+        if (date == 'false'){
+            date = null;
+        }else{
+            date = info[8]
+        }
         
         const bookData = await Book.create({
             bookIsbn: info[0],
@@ -16,8 +23,9 @@ router.post('/', async (req, res) => {
             bookImageUrl: info[5],
             publisherName: info[6],
             bookPages: info[7],
-            publicationDate: info[8]
+            publicationDate: date
         });
+
         res.status(200).json(bookData);
 
     } catch (err) {

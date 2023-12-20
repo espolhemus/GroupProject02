@@ -9,6 +9,7 @@ const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
     try {
+
         const bookIsbn = req.body[0];
         if (req.body[1]) {
             const newCollection = await Collection.create({
@@ -36,26 +37,6 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
-// // This will be modified later if we decide to let users delete a created collection
 
-// router.delete('/:id', async (req, res) => {
-//     try {
-//         const projectData = await Project.destroy({
-//             where: {
-//                 id: req.params.id,
-//                 user_id: req.session.user_id,
-//             },
-//         });
-
-//         if (!projectData) {
-//             res.status(404).json({ message: 'No project found with this id!' });
-//             return;
-//         }
-
-//         res.status(200).json(projectData);
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
 
 module.exports = router;
