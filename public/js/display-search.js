@@ -40,8 +40,23 @@ function displaySearchResults(books) {
     } else {
       description = volumeInfo.description;
     }
+// stash in case I break already working code
+    // bookCard.innerHTML = `
+    // <br>
+    //     <img src="${image}" class="" style = "width:200px; height: 200px;" alt="${volumeInfo.title}">
+    //     <div class="card-body">
+    //       <h4 class="card-title">"${volumeInfo.title}"</h4>
+    //       <h5 class="card-description">${description}</h5>
+    //       <p>By: ${volumeInfo.authors}</p>
+    //       <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
+    //       <button id="save-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${volumeInfo.authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${volumeInfo.publisher}" data-volumePageCount="${volumeInfo.pageCount}" data-volumePublishedDate="${volumeInfo.publishedDate}" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
+    //       <button id="save-read" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
+    //       <button id="add-reading" class="want-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Want to Read</button>
+    //     <div><br><hr>
+    //   `
+    // resultsContainer.append(bookCard);
 
-    bookCard.innerHTML = `
+        bookCard.innerHTML = `
     <br>
         <img src="${image}" class="" style = "width:200px; height: 200px;" alt="${volumeInfo.title}">
         <div class="card-body">
