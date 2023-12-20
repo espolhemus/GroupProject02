@@ -15,6 +15,7 @@ function searchBooks(searchInputValue, searchTypeValue) {
     });
 }
 
+
 // Display book search results to page
 function displaySearchResults(books) {
   var resultsContainer = document.getElementById('output-list');
@@ -61,9 +62,9 @@ function displaySearchResults(books) {
 
   // Add an event listener to the button
   testButtonData.forEach(button => {
-    button.addEventListener('click',() => {
-      console.log("Event listener working")
-      const testButtonVolumeInfoTitle = button.dataset.volumeInfoTitle;
+    button.addEventListener('click',(event) => {
+      console.log(event.target.dataset.volumeinfotitle)
+      const testButtonVolumeInfoTitle = event.target
       console.log(testButtonVolumeInfoTitle)
     });
   });

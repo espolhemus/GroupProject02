@@ -27,7 +27,7 @@ Collection.init(
     },
     collectionName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     dateAdded: {
       type: DataTypes.DATE,
