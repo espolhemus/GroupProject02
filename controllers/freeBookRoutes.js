@@ -1,30 +1,28 @@
 const router = require('express').Router();
-const { Collection, User, Review, Book} = require('../models');
+const { Collection, User, Review, Book } = require('../models');
 const withAuth = require('../utils/auth');
-
+const fetch = require('node-fetch');
 
 router.get('/', async (req, res) => {
-    const { genre } = req.query;
-    const genres = genre ? genre.split(',') : []; // Split the genre string into an array
-  
+    const { genre, APIkey } = req.query;
+    const genres = genre ? genre.split(',') : [];
+
     try {
-      // Use genres array to construct the API URL
-      const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${genres.map(g => `subject:${g}`).join('+')}&filter=free-ebooks`;
-  
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-  
-      res.render('books', {
-        logged_in: req.session.logged_in,
-        user_id: req.session.user_id,
-        name: req.session.name,
-        books: data.items || [],
-      });
+        const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${genres.map(g => `subject:${g}`).join('+')}&filter=free-ebooks&key=${APIkey}`;
+
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        // Set Content-Type to JSON
+        res.setHeader('Content-Type', 'application/json');
+
+        res.json({ books: data.items || [] });
     } catch (err) {
-      console.error('Error fetching books:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error fetching books:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-  });
-  
-  module.exports = router;
+});
+
+// Export the router
+module.exports = router;
 
