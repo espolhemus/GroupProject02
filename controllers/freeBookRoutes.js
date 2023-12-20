@@ -14,7 +14,9 @@ router.get('/', async (req, res) => {
       
       const response = await fetch(apiUrl);
       const data = await response.json();
-      console.log(data);
+      const {items} = data;
+      console.log(items);
+
       
       res.render('books', {
         logged_in: req.session.logged_in,

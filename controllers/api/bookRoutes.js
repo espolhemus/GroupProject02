@@ -4,7 +4,7 @@ const withAuth = require('../../utils/auth');
 
 router.post('/', async (req, res) => {
     try {
-        console.log(req.body.array);
+        console.log(req.body);
         const info = JSON.parse(req.body);
         console.log(info);
         // const bookData = await Book.create({
@@ -20,11 +20,7 @@ router.post('/', async (req, res) => {
     } catch (err) {
         res.status(400).json(err)
     }
-
-
 })
-
-
 
 
 module.exports = router;
