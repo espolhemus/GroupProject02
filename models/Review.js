@@ -19,7 +19,7 @@ Review.init(
         },
       },
     bookIsbn: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         references: {
           model: 'book',
           key: 'bookIsbn',

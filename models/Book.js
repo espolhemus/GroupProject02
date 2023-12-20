@@ -7,7 +7,7 @@ Book.init(
   {
     bookIsbn: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       primaryKey: true,
     },
     bookTitle: {
