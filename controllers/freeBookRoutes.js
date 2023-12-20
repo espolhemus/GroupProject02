@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const { Collection, User, Review, Book} = require('../models');
+const { Collection, User, Review, Book } = require('../models');
 const withAuth = require('../utils/auth');
-
+const fetch = require('node-fetch');
 
 router.get('/', async (req, res) => {
     const { genre, apiKey} = req.query;
@@ -23,10 +23,11 @@ router.get('/', async (req, res) => {
         books: data.items || [],
       });
     } catch (err) {
-      console.error('Error fetching books:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error fetching books:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-  });
-  
-  module.exports = router;
+});
+
+// Export the router
+module.exports = router;
 
