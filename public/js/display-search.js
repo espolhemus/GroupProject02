@@ -9,14 +9,10 @@ function searchBooks(searchInputValue, searchTypeValue) {
       console.log(items);
       displaySearchResults(items)
 
-<<<<<<< HEAD
-
-=======
     })
     .catch(error => {
       console.error("Error:", error);
     });
->>>>>>> 0c9a71f52eafc181d6d586653e437d76c4dc0b20
 }
 
 // Display book search results to page
@@ -47,7 +43,7 @@ function displaySearchResults(books) {
     bookCard.innerHTML = `
     <br>
         <img src="${image}" class="" style = "width:200px; height: 200px;" alt="${volumeInfo.title}">
-        <div class="card-body">
+        <div class="card-body class="bg-[--white] p-2 outline outline-1 outline-[--amber]">
           <h4 class="card-title">"${volumeInfo.title}"</h4>
           <h5 class="card-description">${description}</h5>
           <p>By: ${volumeInfo.authors}</p>
