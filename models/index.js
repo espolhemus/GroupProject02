@@ -11,13 +11,13 @@ const Review = require('./Review');
 User.hasMany(Collection, {foreignKey: 'user_id'})
 Collection.belongsTo(User, {foreignKey: 'user_id'})
 
-Book.hasMany(Collection, {foreignKey: 'book_id'})
-Collection.belongsTo(Book, {foreignKey: 'book_id'})
+Book.hasMany(Collection, {foreignKey: 'book_isbn'})
+Collection.belongsTo(Book, {foreignKey: 'book_isbn'})
 
 User.hasMany(Review, {foreignKey:'user_id'})
 Review.belongsTo(User, {foreignKey: 'user_id'})
 
-Book.hasMany(Review, {foreignKey: 'book_id'})
-Review.belongsTo(Book, {foreignKey: 'book_id'})
+Book.hasMany(Review, {foreignKey: 'book_isbn'})
+Review.belongsTo(Book, {foreignKey: 'book_isbn'})
 
 module.exports = { User, Book, Collection, Review };
