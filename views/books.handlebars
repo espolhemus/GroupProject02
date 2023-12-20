@@ -3,8 +3,12 @@
     <div id="freebooks-container" class="max-w-md mx-auto overflow-y-auto mt-4 p-4 border rounded">
         {{#each books}}
             <div class="card mb-4">
-                <!-- Display book details as links -->
-                <h4 class="card-title"><a href="{{this.volumeInfo.infoLink}}" target="_blank">{{this.volumeInfo.title}}</a></h4>
+                <!-- Display book details as links with Tailwind CSS styling -->
+                <h4 class="card-title">
+                    <a href="{{this.volumeInfo.infoLink}}" target="_blank" class="text-blue-500 hover:underline">
+                        {{this.volumeInfo.title}}
+                    </a>
+                </h4>
                 <p>By: {{this.volumeInfo.authors}}</p>
             </div>
         {{/each}}
