@@ -1,23 +1,23 @@
 <div class="col-span-8 p-2 m-2 mx-4 text-xl outline outline-1 outline-[--amber] bg-[--brown] rounded-xl">
   <form id="search-form" class="p-6">
-    <div class="outline outline-2 outline-[--amber] rounded-t-xl focus:outline-2 p-2">
-      <p class="col-span-8 p-2 bg-[--night] text-white outline outline-2 outline-[--amber] rounded-t-xl focus:outline-2">Search books by title, author, or ISBN:</p>
-      <input type="text" id="search-input"class="p-2 col-span-8 w-[100%] focus:outline-10 focus:outline-[--amber]">
+    <div class="outline outline-1 outline-[--amber] rounded-t-xl p-2">
+      <p class="col-span-8 p-2 bg-[--night] text-white rounded-t-xl">Search books by title, author, or ISBN:</p>
+      <input type="text" id="search-input"class="p-2 col-span-8 w-[100%] focus:outline-4 focus:outline-lime-600">
      </div><br>
-     <div class="outline outline-2 outline-[--amber] rounded-t-xl focus:outline-2 p-2"> 
-      <label for="Books" class="col-span-8 p-2 bg-[--night] text-white outline outline-2 outline-[--amber] rounded-t-xl focus:outline-2">Select Search Type:</label><br>
-      <select id="search-type" class="p-2 col-span-8 w-[100%] outline outline-1 focus:outline-4">
-      <option value="intitle:" class="focus:bg-[--silver]">Title</option>
+     <div class="outline outline-1 outline-[--amber] rounded-t-xl focus:outline-2 p-2"> 
+      <p for="Books" class="col-span-8 p-2 bg-[--night] text-white rounded-t-xl focus:outline-2">Select Search Type:</p>
+      <select id="search-type" class="p-2 col-span-8 w-[100%] focus:outline-4 focus:outline-lime-600">
+      <option value="intitle:">Title</option>
       <option value="inauthor:">Author</option>
       <option value="isbn:">ISBN</option>
       </select>
      </div><br>     
-    <button id="search-button" class="p-2 bg-lime-800 hover:bg-lime-700 text-white w-[200px] active:opacity-50">Search</button>
+    <button id="search-button" class="p-2 rounded-lg bg-lime-800 hover:bg-lime-700 text-white w-[200px] active:opacity-50">Search</button>
   </form>
   <!-- Container to hold search results content -->
     <div id="output-list">
        <!-- book card -->
       
-    </div>
-    
+    </div>    
+
  <script src="/js/display-search.js"></script>

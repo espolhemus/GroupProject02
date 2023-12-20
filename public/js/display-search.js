@@ -42,16 +42,21 @@ function displaySearchResults(books) {
 
     bookCard.innerHTML = `
     <br>
-        <img src="${image}" class="" style = "width:200px; height: 200px;" alt="${volumeInfo.title}">
-        <div class="card-body class="bg-[--white] p-2 outline outline-1 outline-[--amber]">
-          <h4 class="card-title">"${volumeInfo.title}"</h4>
-          <h5 class="card-description">${description}</h5>
-          <p>By: ${volumeInfo.authors}</p>
-          <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
-          <button id="testBtn" data-volumeInfoTitle="${volumeInfo.title}"  class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Test Button</button>
-          <button id="save-read" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
-          <button id="add-reading" class="want-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Want to Read</button>
-        <div><br><hr>
+        <div class="card-body grid grid-cols-3 p-6 m-2 mx-4 rounded-xl text-base outline outline-4 outline-[--amber] bg-white p-2 outline outline-1 outline-[--amber]">
+          <div class="col-span-1">
+            <img src="${image}" class="" style = "width:200px; height: 200px;" alt="${volumeInfo.title}"><br>
+            <h4 class="card-title font-bold text-xl">"${volumeInfo.title}"</h4>
+            <p class="font-bold">By: ${volumeInfo.authors}</p><br>
+            <button id="testBtn" data-volumeInfoTitle="${volumeInfo.title}"  class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Test Button</button>
+            <button id="save-read" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
+            <button id="add-reading" class="want-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Want to Read</button>
+          </div>
+          <div class="col-span-2">  
+            <h5 class="card-description">Book Details:</h5><br>
+            <p truncate...>${description}</p>
+            <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a><br><br>
+          </div>  
+        <div><br>
       `
     resultsContainer.append(bookCard);
   });
