@@ -3,7 +3,7 @@ const { Book } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // Want to read or have read button clicked. Book will be added to the database
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const info = req.body;
         var date = info[8];

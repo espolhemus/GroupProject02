@@ -3,7 +3,7 @@ const { Collection, User, Review, Book } = require('../models');
 const withAuth = require('../utils/auth');
 const fetch = require('node-fetch');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     const { genre, apiKey} = req.query;
     console.log(genre);
     const genres = genre ? genre.split(',') : []; // Split the genre string into an array

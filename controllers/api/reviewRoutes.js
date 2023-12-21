@@ -4,7 +4,7 @@ const withAuth = require('../../utils/auth');
 
 
 // Create a new review with 0 rating when a use adds a book to a collection
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
 
     try {
 
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
 });
 
 // update a review
-router.put('/', async (req, res) => {
+router.put('/', withAuth, async (req, res) => {
 
     try {
         console.log('reviewscore: ' + req.body.reviewScore + 'bookisbn: ' + req.body.bookIsbn + 'userid:' +req.session.user_id);

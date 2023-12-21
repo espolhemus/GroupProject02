@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const { User } = require('../models');
 const withAuth = require('../utils/auth');
+require('dotenv').config();
+
 
 router.get('/', withAuth, async (req, res) => {
     try {
@@ -16,5 +17,17 @@ router.get('/', withAuth, async (req, res) => {
     };
   });
 
+router.post('/', withAuth, async (req,res) => {
+  var url = req.body.apiURL;
+  url += process.env.API_KEY;
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  
+  res.status(200).json(await response.json());
 
+})
 module.exports = router;
