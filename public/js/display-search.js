@@ -1,6 +1,5 @@
 // Search books using title input select
 async function searchBooks(searchInputValue, searchTypeValue) {
-  var apiKey = 'AIzaSyB7B-Q8ya3aud6KiRhixk3IPODDK1umTF0';
   var apiURL = `https://www.googleapis.com/books/v1/volumes?q=${searchInputValue}+${searchTypeValue}&key=`
   try {
     const response = await fetch(`/search`, {
