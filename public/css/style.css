@@ -1,3 +1,11 @@
 .current {
   text-decoration: underline;
 }
+
+.checked {
+  color: goldenrod;
+}
+
+.fa:hover  {
+  border: solid purple 1px;
+}
