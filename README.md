@@ -71,6 +71,8 @@ The location of the respository is as follows: https://github.com/espolhemus/Gro
 ## Citations and Credits
 - Google Books API
   > https://developers.google.com/books
+- Header Banner Image:
+  > Stanislav Kondratiev.”Books on Wooden Shelves Inside Library.” Pexels, Accessed 19 Dec. 2023, https://www.pexels.com/photo/books-on-wooden-shelves-inside-library-2908984/
 
 ## License
 
