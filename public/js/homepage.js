@@ -64,8 +64,7 @@ const four = document.querySelectorAll('.four')
 
 four.forEach(star => {
     star.addEventListener('click', async (event) => {
-
-        const bookIsbn = event.target.parentNode.parentNode.parentNode.children.item(1).children.item(1).textContent.split(':');
+        const bookIsbn = event.target.parentNode.parentNode.parentNode.children.item(1).children.item(1).textContent.split(':')[1].trim();
         const response = await fetch('/api/review', {
             method: 'PUT',
             headers: {
@@ -74,7 +73,6 @@ four.forEach(star => {
             body: JSON.stringify({ bookIsbn, reviewScore: 4 })
         })
         if (response.ok) {
-            console.log('changed?');
             document.location.replace('/');
         } else {
             alert('Failed to update review.');
