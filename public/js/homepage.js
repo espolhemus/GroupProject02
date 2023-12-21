@@ -10,7 +10,7 @@ one.forEach(star => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bookIsbn, reviewScore : 1})
+            body: JSON.stringify({ bookIsbn, reviewScore: 1 })
         })
         if (response.ok) {
             document.location.replace('/');
@@ -30,7 +30,7 @@ two.forEach(star => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bookIsbn, reviewScore : 2})
+            body: JSON.stringify({ bookIsbn, reviewScore: 2 })
         })
         if (response.ok) {
             document.location.replace('/');
@@ -50,7 +50,7 @@ three.forEach(star => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bookIsbn, reviewScore : 3})
+            body: JSON.stringify({ bookIsbn, reviewScore: 3 })
         })
         if (response.ok) {
             document.location.replace('/');
@@ -70,7 +70,7 @@ four.forEach(star => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bookIsbn, reviewScore : 4})
+            body: JSON.stringify({ bookIsbn, reviewScore: 4 })
         })
         if (response.ok) {
             document.location.replace('/');
@@ -91,12 +91,34 @@ five.forEach(star => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bookIsbn, reviewScore : 5})
+            body: JSON.stringify({ bookIsbn, reviewScore: 5 })
         })
         if (response.ok) {
             document.location.replace('/');
         } else {
             alert('Failed to update review.');
+        }
+    })
+})
+
+// Delete a book from a user's collections
+const del = document.querySelectorAll('.del')
+
+del.forEach(btn => {
+    btn.addEventListener('click', async (event) => {
+        const collectionId = event.target.dataset.collectionid;
+        console.log(collectionId);
+        const response = await fetch('/api/collection', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ collectionId })
+        })
+        if (response.ok) {
+            document.location.replace('/');
+        } else {
+            alert('Failed to delete collection.');
         }
     })
 })

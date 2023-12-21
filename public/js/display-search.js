@@ -70,11 +70,14 @@ function displaySearchResults(books) {
     } else {
       authors = volumeInfo.authors;
     }
-    console.log('id:' +book.id);
+    var test = volumeInfo.industryIdentifiers[0].identifier.split(':')
     var isbn;
     if (!volumeInfo.industryIdentifiers) {
       isbn = book.id
-    }else {
+    }else  if (test.length == 2){
+      isbn = test[1];
+      }
+      else {
       isbn = volumeInfo.industryIdentifiers[0].identifier;
     }
 

@@ -13,7 +13,7 @@ router.get('/', withAuth, async (req, res) => {
           include: [
             {
               model: Review,
-              attributes: ['reviewScore'],
+              attributes: ['reviewScore', 'reviewId', 'userId'],
               where: { user_id: req.session.user_id }, // Filter reviews by user_id
               required: false,
             },
@@ -40,9 +40,7 @@ router.get('/', withAuth, async (req, res) => {
         return false;
       }
     })
-    
-    console.log('in home route');
-    
+        
     // Pass serialized data and session flag into template
     res.render('homepage', {
       hasRead: hasRead,
