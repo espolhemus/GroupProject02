@@ -7,13 +7,15 @@ const withAuth = require('../../utils/auth');
 router.post('/', async (req, res) => {
 
     try {
-        const reviewData = await Review.create({
-            bookIsbn: req.body[0],
-            userId: req.session.user_id,
-        })
+        const reviewData = await Review.findOrCreate({
+            where: { userId: req.session.user_id, bookIsbn: bookIsbn },
+            defaults: {
+                bookIsbn: req.body[0],
+                userId: req.session.user_id,
+            }
+        });
 
         res.status(200).json(reviewData);
-
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
