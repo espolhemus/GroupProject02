@@ -73,16 +73,19 @@ function displaySearchResults(books) {
 
     // generate card with the information and attach it to the results container 
         bookCard.innerHTML = `
-    <br>
-        <img src="${image}" class="" style = "width:200px; height: 200px;" alt="${volumeInfo.title}">
-        <div class="card-body">
-          <h4 class="card-title">"${volumeInfo.title}"</h4>
-          <h5 class="card-description">${description}</h5>
-          <p>Author(s): ${authors}</p>
-          <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a><br>
-          <button id="have-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${publisher}" data-volumePageCount="${pages}" data-volumePublishedDate="${publishedDate}" class="have-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Have Read</button>
-          <button id="want-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${publisher}" data-volumePageCount="${pages}" data-volumePublishedDate="${publishedDate}" class="want-read btn w-[150px] text-sm text-white bg-indigo-800 hover:bg-indigo-900 rounded">Want to Read</button>
-        <div><br><hr>
+      <div class="col-span-1">
+          <div class="card-body gap-2 p-6 m-6 text-base border-t-20 border-[--night] outline outline-4 outline-[--amber] bg-white rounded-xl ">
+          <h4 class="card-title bg-[--night] pt-2 mb-2 rounded-t-xl text-center text-lg text-white font-bold truncate">"${volumeInfo.title}"</h4>
+          <p class="font-bold truncate">Author(s): ${authors}</p><br>
+          <img src="${image}" class="" style = "width:350px; height:350px;" alt="${volumeInfo.title}"><br>
+          <div class="grid grid-cols-2 gap-2">
+            <button id="have-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${publisher}" data-volumePageCount="${pages}" data-volumePublishedDate="${publishedDate}" class="have-read col-span-1 object-scale-down w-[100%] p-2 text-sm text-white bg-orange-600 hover:bg-orange-500 active:opacity-50 rounded">Have Read</button>
+            <button id="want-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${publisher}" data-volumePageCount="${pages}" data-volumePublishedDate="${publishedDate}" class="want-read btn col-span-1 p-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 active:opacity-50 rounded">Want to Read</button>
+          </div><br>
+            <div class="card-description text-sm truncate">${description}</div>
+            <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a>
+        </div>
+      </div>  
       `
 
     resultsContainer.append(bookCard);

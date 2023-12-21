@@ -1,3 +1,27 @@
-.current {
-  text-decoration: underline;
+/* Color theme variables */
+:root {
+  --white: #DDB2;
+  --silver: #9AACBB;
+  --amber: #B37C57;
+  --night: #3C455C;
+  --brown: #60412B;
+}
+
+body {
+  background-color:  #60412B;
+}
+
+header {
+  background-image:url("../images/hero-banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+i {
+  -webkit-text-stroke: 5px #DDB2;
+}
+
+h1 {
+  -webkit-text-stroke: 3px #60412B;
 }
