@@ -11,7 +11,7 @@
             <p>ISBN: {{book.bookIsbn}}</p>
             <p>Pages: {{book.bookPages}}</p>
             <p>Published by: {{book.publisherName}} {{#if book.publicationDate}}on {{format_date book.publicationDate}}</p>
-            <button class="bg-[--night] p-2 m-2 rounded-xl text-center text-lg text-white font-bold del" data-collectionId = "{{collectionId}}" data-reviewId = "{{book.reviews.0.reviewId}}">Delete from collection</button>
+            <button class="bg-lime-800 hover:bg-lime-700 p-2 m-2 rounded-xl text-center text-lg text-white font-bold del" data-collectionId = "{{collectionId}}" data-reviewId = "{{book.reviews.0.reviewId}}">Delete from collection</button>
             {{/if}}
         </div>
     </div>
