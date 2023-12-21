@@ -102,9 +102,6 @@ function displaySearchResults(books) {
     resultsContainer.append(bookCard);
   });
 
-  haveRead.addEventListener("click", function() {
-   
-  })
 
   // Access the haveRead element
   const haveReadData = document.querySelectorAll('#have-read')
