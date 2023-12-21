@@ -25,3 +25,11 @@ i {
 h1 {
   -webkit-text-stroke: 3px #60412B;
 }
+
+.checked {
+  color: goldenrod;
+}
+
+.fa:hover  {
+  border: solid purple 1px;
+}

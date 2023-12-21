@@ -25,10 +25,10 @@ Review.init(
           key: 'bookIsbn',
         },
       },  
-    
     reviewScore: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0, 
       },
     reviewText: {
         type: DataTypes.TEXT,

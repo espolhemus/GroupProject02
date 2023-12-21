@@ -142,6 +142,17 @@ function displaySearchResults(books) {
         },
         body: JSON.stringify(collection)
       })
+
+      const review = [bookIsbn]
+
+      const response3 = await fetch('/api/review', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(review)
+      })
+      
     })
   });
 

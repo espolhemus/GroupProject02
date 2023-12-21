@@ -2,30 +2,14 @@ const router = require('express').Router();
 const { Review } = require('../../models');
 const withAuth = require('../../utils/auth');
 
- // For retrieving data for a review
-router.get('/:reviewid', async (req,res) => {
-    try{
-        const reviewData = await Review.findOne({where: {ReviewID : req.params.reviewid}})
-        res.status(200).json(reviewData);
 
-    } catch {
-        res.status(400).json(err);
-
-    }
-})
-
-
-// Create a new review for a specific book
+// Create a new review with 0 rating when a use adds a book to a collection
 router.post('/', async (req, res) => {
 
     try {
-
         const reviewData = await Review.create({
-            BookID: req.body.ISBN,
-            UserID: req.session.user_id,
-            ReviewScore: req.body.score,
-            ReviewDate: Date.now(),
-            ReviewText: req.body.text
+            bookIsbn: req.body[0],
+            userId: req.session.user_id,
         })
 
         res.status(200).json(reviewData);
@@ -36,26 +20,26 @@ router.post('/', async (req, res) => {
     }
 });
 
+// update a review
+router.put('/', async (req, res) => {
 
-// This will be modified later if we decide to let users delete a review
-router.delete('/:id', async (req, res) => {
     try {
-        const projectData = await Project.destroy({
-            where: {
-                id: req.params.id,
-                user_id: req.session.user_id,
+        const reviewData = await Review.update(
+            {
+                reviewScore: req.body.reviewScore
             },
-        });
+            {
+                where: {
+                    bookIsbn: req.body.bookIsbn,
+                    userId: req.session.user_id,
+                }
+            })
 
-        if (!projectData) {
-            res.status(404).json({ message: 'No project found with this id!' });
-            return;
-        }
+        res.status(200).json(reviewData);
 
-        res.status(200).json(projectData);
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
-
 module.exports = router;
