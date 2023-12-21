@@ -70,7 +70,15 @@ function displaySearchResults(books) {
     } else {
       authors = volumeInfo.authors;
     }
+    console.log('id:' +book.id);
+    var isbn;
+    if (!volumeInfo.industryIdentifiers) {
+      isbn = book.id
+    }else {
+      isbn = volumeInfo.industryIdentifiers[0].identifier;
+    }
 
+    console.log('isbn: ' + volumeInfo.industryIdentifiers);
     // generate card with the information and attach it to the results container 
         bookCard.innerHTML = `
       <div class="col-span-1">
@@ -79,8 +87,8 @@ function displaySearchResults(books) {
           <p class="font-bold truncate">Author(s): ${authors}</p><br>
           <img src="${image}" class="" style = "width:350px; height:350px;" alt="${volumeInfo.title}"><br>
           <div class="grid grid-cols-2 gap-2">
-            <button id="have-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${publisher}" data-volumePageCount="${pages}" data-volumePublishedDate="${publishedDate}" class="have-read col-span-1 object-scale-down w-[100%] p-2 text-sm text-white bg-orange-600 hover:bg-orange-500 active:opacity-50 rounded">Have Read</button>
-            <button id="want-read" data-volumeISBN="${volumeInfo.industryIdentifiers[0].identifier}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${publisher}" data-volumePageCount="${pages}" data-volumePublishedDate="${publishedDate}" class="want-read btn col-span-1 p-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 active:opacity-50 rounded">Want to Read</button>
+            <button id="have-read" data-volumeISBN="${isbn}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${publisher}" data-volumePageCount="${pages}" data-volumePublishedDate="${publishedDate}" class="have-read col-span-1 object-scale-down w-[100%] p-2 text-sm text-white bg-orange-600 hover:bg-orange-500 active:opacity-50 rounded">Have Read</button>
+            <button id="want-read" data-volumeISBN="${isbn}" data-volumeTitle="${volumeInfo.title}" data-volumeDescription="${description}" data-volumeAuthors="${authors}" data-volumeInfoLink="${volumeInfo.infoLink}" data-volumeImageLink="${image}" data-volumePublisher="${publisher}" data-volumePageCount="${pages}" data-volumePublishedDate="${publishedDate}" class="want-read btn col-span-1 p-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 active:opacity-50 rounded">Want to Read</button>
           </div><br>
             <div class="card-description text-sm truncate">${description}</div>
             <a href="${volumeInfo.infoLink}" class="text-blue-400 hover:underline">More Info</a>
@@ -142,6 +150,17 @@ function displaySearchResults(books) {
         },
         body: JSON.stringify(collection)
       })
+
+      const review = [bookIsbn]
+
+      const response3 = await fetch('/api/review', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(review)
+      })
+      
     })
   });
 

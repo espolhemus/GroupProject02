@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
             publisherName: info[6],
             bookPages: info[7],
             publicationDate: date
-        });
+        }, { ignore: true });
 
         res.status(200).json(bookData);
 
