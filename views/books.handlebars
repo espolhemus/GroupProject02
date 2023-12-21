@@ -21,7 +21,7 @@
     <!-- Container to hold free books content -->
     <div id="freebooks-container" class="grid grid-cols-4 gap-2">
         {{#each books}}
-            <div class="bg-white outline outline-4 outline-[--amber] rounded-xl p-2 m-2">
+            <div class="bg-white outline outline-4 outline-[--amber] rounded-xl p-2 m-2 flex flex-col items-center">
                 <div class="m-2 p-2">
                     <!-- Display book cover image -->
                     <img class="border-4 border-[--night] border-solid rounded-xl w-64 h-96"src="{{this.volumeInfo.imageLinks.thumbnail}}" alt="{{this.volumeInfo.title}}" class="mt-2 rounded">
