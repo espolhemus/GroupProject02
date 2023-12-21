@@ -1,6 +1,6 @@
 <div class="col-span-8 p-6 m-2 mx-4 text-xl outline outline-1 outline-[--amber] bg[--brown] rounded-xl">
    <div class="outline outline-1 outline-[--amber] rounded-t-xl p-2">
-        <h2 class="text-white text-6xl text-center bg-[--night] rounded-t-xl">Free Books</h2> 
+        <h2 class="text-white text-6xl text-center bg-[--night] rounded-t-xl p-2">Free Books</h2> 
         <!-- Add the genre form -->
         <form id="genre-form" class="text-center bg-white text-xl p-2">
             <label for="genre-input" class="font-bold">Select Genre:</label>
@@ -21,10 +21,10 @@
     <!-- Container to hold free books content -->
     <div id="freebooks-container" class="grid grid-cols-4 gap-2">
         {{#each books}}
-            <div class="bg-white outline outline-4 outline-[--amber] rounded-xl p-2 m-2 flex flex-col items-center justify-center">
+            <div class="bg-white outline outline-4 outline-[--amber] rounded-xl p-2 m-2">
                 <div class="m-2 p-2">
                     <!-- Display book cover image -->
-                    <img class = "border-4 border-[--night] border-solid rounded-xl w-64"src="{{this.volumeInfo.imageLinks.thumbnail}}" alt="{{this.volumeInfo.title}}" class="mt-2 rounded">
+                    <img class="border-4 border-[--night] border-solid rounded-xl w-64"src="{{this.volumeInfo.imageLinks.thumbnail}}" alt="{{this.volumeInfo.title}}" class="mt-2 rounded">
                 </div>
                 <!-- Display book details as links with Tailwind CSS styling -->
                 <h4 class="card-title">

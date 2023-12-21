@@ -1,26 +1,25 @@
 {{!-- Iterates through collection lists and displays information --}}
-<main class="col-span-8 flex mb-4 p-5 outline outline-1 rounded-xl">
-  <div class="w-full p-2 m-2 outline outline-1 rounded-xl">
-    <h3 class="text-white text-6xl text-center bg-[--night] rounded-t-xl m-2 p-2 mb-4">Have Read</h3>
-    {{#if hasRead}}
-    {{#each hasRead as |has|}}
-    {{>hasRead}}
-    {{/each}}
-    {{else}}
-    <p class="text-6xl text-center font-mono bg-white m-2 p-2 rounded-xl h-96 outline outline-4 outline-[--amber]">Search for some books and add them to this list!</p>
-    {{/if}}
-  </div>
-  <div class="w-full p-2 m-2 outline outline-1 rounded-xl">
-    <h3 class="text-white text-6xl text-center bg-[--night] rounded-t-xl m-2 p-2 mb-4">Want To Read</h3>
-    {{#if wantsToRead}}
-    {{#each wantsToRead as |want|}}
-    {{>wantToRead}}
-    {{/each}}
-    {{else}}
-    <p class="text-6xl text-center font-mono bg-white m-2 p-2 rounded-xl h-96 outline outline-4 outline-[--amber]">Search for some books and add them to this list!</p>
-    {{/if}}
-
-  </div>
+<main class="col-span-8 flex p-6 outline outline-1 outline-[--amber] rounded-xl m-2">
+    <div class="w-full p-2 m-2 outline outline-1 outline-[--amber] rounded-xl">
+      <h3 class="text-white text-6xl text-center bg-[--night] rounded-t-xl m-2 p-2 mb-4">Have Read</h3>
+      {{#if hasRead}}
+      {{#each hasRead as |has|}}
+      {{>hasRead}}
+      {{/each}}
+      {{else}}
+      <p class="text-xl text-center text-white font-mono">Search for some books and add them to this list!</p>
+      {{/if}}
+    </div>
+    <div class="w-full p-2 m-2 outline outline-1 outline-[--amber] rounded-xl">
+      <h3 class="text-white text-6xl text-center bg-[--night] rounded-t-xl m-2 p-2 mb-4">Want To Read</h3>
+      {{#if wantsToRead}}
+      {{#each wantsToRead as |want|}}
+      {{>wantToRead}}
+      {{/each}}
+      {{else}}
+      <p class="text-xl text-center text-white font-mono">Search for some books and add them to this list!</p>
+      {{/if}}
+    </div>
 </main>
 
 <script src="/js/homepage.js"></script>

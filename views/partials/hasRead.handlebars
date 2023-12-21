@@ -1,8 +1,7 @@
 {{!-- pulls out book information from each collection --}}
-<div class="h-96 bg-white outline outline-4 outline-[--amber] m-2 p-2 mb-4 rounded-xl ">
-    
-    <h3 class="card-title bg-[--night] pt-2 mb-2 rounded-t-xl text-center text-lg text-white font-bold">
-        {{book.bookTitle}} by {{book.bookAuthor}}</h3><br>
+<div class="h-96 bg-white outline outline-4 outline-[--amber] m-2 mb-4 p-2 rounded-xl ">
+    <h3 class="card-title bg-[--night] p-2 mb-2 rounded-t-xl text-center text-lg text-white font-bold">{{book.bookTitle}} by {{book.bookAuthor}}</h3><br>
+
     <div class="flex flex-row">
         <div class="w-1/5 h-64 flex flex-col items-center">
             <a href="{{book.eBookUrl}}"><img class="h-48 w-96 border-4 border-indigo-500/100 rounded-xl"
