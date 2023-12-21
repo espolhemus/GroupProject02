@@ -99,9 +99,12 @@ function displaySearchResults(books) {
     resultsContainer.append(bookCard);
   });
 
+  haveRead.addEventListener("click", function() {
+   
+  })
+
   // Access the haveRead element
   const haveReadData = document.querySelectorAll('#have-read')
-
 
   // Add an event listener to the button
   haveReadData.forEach(button => {
@@ -131,7 +134,6 @@ function displaySearchResults(books) {
       const book = [bookIsbn, bookTitle, bookAuthor, bookDescription, bookInfoLink, bookImageUrl, bookPublisherName, bookPages, bookPublicationDate];
 
       // Send the volume data to the database via the POST route
-
       const response = await fetch('/api/book', {
         method: 'POST',
         headers: {
