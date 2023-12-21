@@ -2,9 +2,6 @@ const router = require('express').Router();
 const { Collection } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
-
-
 // Mark a book as hasread or wantstoread
 
 router.post('/', withAuth, async (req, res) => {
@@ -42,6 +39,27 @@ router.post('/', withAuth, async (req, res) => {
         res.status(400).json(err);
     }
 });
+
+// Delete a collection
+
+
+// delete a post
+router.delete('/', async (req, res) => {
+   
+    try {
+      const collectionData = await Collection.destroy({
+        where: {
+          collectionId: req.body.collectionId
+        }
+      });
+  
+      res.status(200).json(collectionData);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
+
 
 
 

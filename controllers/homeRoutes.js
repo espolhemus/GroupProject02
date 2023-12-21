@@ -13,7 +13,7 @@ router.get('/', withAuth, async (req, res) => {
           include: [
             {
               model: Review,
-              attributes: ['reviewScore'],
+              attributes: ['reviewScore', 'reviewId', 'userId'],
               where: { user_id: req.session.user_id }, // Filter reviews by user_id
               required: false,
             },

@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
 
     try {
         const reviewData = await Review.findOrCreate({
-            where: { userId: req.session.user_id, bookIsbn: bookIsbn },
+            where: { userId: req.session.user_id, bookIsbn: req.body[0] },
             defaults: {
                 bookIsbn: req.body[0],
                 userId: req.session.user_id,
@@ -44,4 +44,6 @@ router.put('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+
 module.exports = router;
