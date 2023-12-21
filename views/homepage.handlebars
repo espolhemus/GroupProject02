@@ -1,7 +1,7 @@
 {{!-- Iterates through collection lists and displays information --}}
-<main class="col-span-8 flex mb-4 p-5 outline outline-1">
-  <div class="w-full p-2 m-2 outline outline-1">
-    <h3 class="text-2xl text-center">Have Read:</h3><br>
+<main class="col-span-8 flex mb-4 p-5 outline outline-1 rounded-xl">
+  <div class="w-full p-2 m-2 outline outline-1 rounded-xl">
+    <h3 class="text-white text-6xl text-center bg-[--night] rounded-t-xl m-2 p-2 mb-4">Have Read</h3>
     {{#if hasRead}}
     {{#each hasRead as |has|}}
     {{>hasRead}}
@@ -10,8 +10,8 @@
     <p class="text-2xl text-center font-mono">Search for some books and add them to this list!</p>
     {{/if}}
   </div>
-  <div class="w-full p-2 m-2 outline outline-1">
-    <h3 class="text-2xl text-center">Want To Read:</h3><br>
+  <div class="w-full p-2 m-2 outline outline-1 rounded-xl">
+    <h3 class="text-white text-6xl text-center bg-[--night] rounded-t-xl m-2 p-2 mb-4">Want To Read</h3>
     {{#if wantsToRead}}
     {{#each wantsToRead as |want|}}
     {{>wantToRead}}
@@ -23,4 +23,4 @@
   </div>
 </main>
 
-  <script src="/js/homepage.js"></script>
+<script src="/js/homepage.js"></script>

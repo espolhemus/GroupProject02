@@ -17,7 +17,7 @@ router.post('/', withAuth, async (req, res) => {
                 userId: req.session.user_id,
                 hasRead : 1,
                 wantsToRead : 0,
-            });
+            }, { ignore: true });
             res.status(200).json(newCollection);
 
         }else {
