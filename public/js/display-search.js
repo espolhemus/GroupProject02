@@ -41,20 +41,20 @@ function displaySearchResults(books) {
 
     var description;
     if (!volumeInfo.description) {
-      description = 'No description included.'
+      description = 'No description provided.'
     } else {
       description = volumeInfo.description;
     }
     var pages;
     if (!volumeInfo.pageCount) {
-      pages = 'Not provided'
+      pages = 'No page count provided'
     } else {
       pages = volumeInfo.pageCount;
     }
 
     var publisher;
     if (!volumeInfo.publisher) {
-      publisher = 'Not provided'
+      publisher = 'No publisher provided'
     } else {
       publisher = volumeInfo.publisher;
     }
@@ -69,7 +69,7 @@ function displaySearchResults(books) {
     var authors;
 
     if (!volumeInfo.authors) {
-      authors = 'Not provided.'
+      authors = 'Not author provided.'
     } else {
       authors = volumeInfo.authors;
     }

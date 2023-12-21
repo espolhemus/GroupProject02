@@ -17,9 +17,11 @@ router.get('/', withAuth, async (req, res) => {
     };
   });
 
+  // fetch books from google books api
 router.post('/', withAuth, async (req,res) => {
   var url = req.body.apiURL;
   url += process.env.API_KEY;
+  console.log(url);
   const response = await fetch(url, {
     method: 'GET',
     headers: {

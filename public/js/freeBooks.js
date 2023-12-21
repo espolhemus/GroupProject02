@@ -1,10 +1,9 @@
 // freeBooks.js
 function searchFreeBooks() {
-  var apiKey = 'AIzaSyAZgRIh9j8BsCvGEJ5fYneL343gD0Qwuq0'; 
   var selectedGenres = document.querySelectorAll('input[name="genre"]:checked');
   var genreValues = Array.from(selectedGenres).map(genre => genre.value).join(',');
 
-  var apiURL = `/books?genre=${genreValues}&key=${apiKey}`;
+  var apiURL = `/books?genre=${genreValues}`;
 
   fetch(apiURL)
       .then(response => {
