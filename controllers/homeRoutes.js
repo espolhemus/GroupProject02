@@ -40,9 +40,7 @@ router.get('/', withAuth, async (req, res) => {
         return false;
       }
     })
-    
-    console.log('in home route');
-    
+        
     // Pass serialized data and session flag into template
     res.render('homepage', {
       hasRead: hasRead,

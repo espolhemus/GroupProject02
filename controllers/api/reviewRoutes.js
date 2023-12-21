@@ -7,6 +7,8 @@ const withAuth = require('../../utils/auth');
 router.post('/', async (req, res) => {
 
     try {
+
+        
         const reviewData = await Review.findOrCreate({
             where: { userId: req.session.user_id, bookIsbn: req.body[0] },
             defaults: {
@@ -26,6 +28,7 @@ router.post('/', async (req, res) => {
 router.put('/', async (req, res) => {
 
     try {
+        console.log('reviewscore: ' + req.body.reviewScore + 'bookisbn: ' + req.body.bookIsbn + 'userid:' +req.session.user_id);
         const reviewData = await Review.update(
             {
                 reviewScore: req.body.reviewScore

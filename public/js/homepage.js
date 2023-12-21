@@ -10,7 +10,7 @@ one.forEach(star => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bookIsbn, reviewScore : 1})
+            body: JSON.stringify({ bookIsbn, reviewScore: 1 })
         })
         if (response.ok) {
             document.location.replace('/');
@@ -30,7 +30,7 @@ two.forEach(star => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bookIsbn, reviewScore : 2})
+            body: JSON.stringify({ bookIsbn, reviewScore: 2 })
         })
         if (response.ok) {
             document.location.replace('/');
@@ -50,7 +50,7 @@ three.forEach(star => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bookIsbn, reviewScore : 3})
+            body: JSON.stringify({ bookIsbn, reviewScore: 3 })
         })
         if (response.ok) {
             document.location.replace('/');
@@ -64,15 +64,17 @@ const four = document.querySelectorAll('.four')
 
 four.forEach(star => {
     star.addEventListener('click', async (event) => {
-        const bookIsbn = event.target.parentNode.parentNode.parentNode.children.item(1).children.item(1).textContent.split(':')[1].trim();
+
+        const bookIsbn = event.target.parentNode.parentNode.parentNode.children.item(1).children.item(1).textContent.split(':');
         const response = await fetch('/api/review', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bookIsbn, reviewScore : 4})
+            body: JSON.stringify({ bookIsbn, reviewScore: 4 })
         })
         if (response.ok) {
+            console.log('changed?');
             document.location.replace('/');
         } else {
             alert('Failed to update review.');
@@ -91,7 +93,7 @@ five.forEach(star => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bookIsbn, reviewScore : 5})
+            body: JSON.stringify({ bookIsbn, reviewScore: 5 })
         })
         if (response.ok) {
             document.location.replace('/');
@@ -101,6 +103,7 @@ five.forEach(star => {
     })
 })
 
+// Delete a book from a user's collections
 const del = document.querySelectorAll('.del')
 
 del.forEach(btn => {
