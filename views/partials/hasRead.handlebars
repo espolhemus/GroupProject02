@@ -1,11 +1,13 @@
 {{!-- pulls out book information from each collection --}}
 <div class="h-96 bg-white outline outline-4 outline-[--amber] m-2 mb-4 p-2 rounded-xl ">
     <h3 class="card-title bg-[--night] p-2 mb-2 rounded-t-xl text-center text-lg text-white font-bold">{{book.bookTitle}} by {{book.bookAuthor}}</h3><br>
+
     <div class="flex flex-row">
         <div class="w-1/5 h-64 flex flex-col items-center">
-            <a href="{{book.eBookUrl}}"><img class="h-48 w-96 border-4 border-indigo-500/100 rounded-xl" src="{{book.bookImageUrl}}"></a>
+            <a href="{{book.eBookUrl}}"><img class="h-48 w-96 border-4 border-indigo-500/100 rounded-xl"
+                    src="{{book.bookImageUrl}}"></a>
             <div class="flex h-fit">
-                {{#if (is_equal_one book.reviews.0.reviewScore)}}              
+                {{#if (is_equal_one book.reviews.0.reviewScore)}}
                 <p class="text-xl fa fa-star checked one"></p>
                 <p class="text-xl fa fa-star two"></p>
                 <p class="text-xl fa fa-star three"></p>
@@ -49,10 +51,10 @@
             <p>ISBN: {{book.bookIsbn}}</p>
             <p>Pages: {{book.bookPages}}</p>
             <p>Published by: {{book.publisherName}} {{#if book.publicationDate}}on {{format_date book.publicationDate}}</p>
-                {{/if}}
+            <button class="bg-lime-800 hover:bg-lime-700 p-2 m-2 rounded-xl text-center text-lg text-white font-bold del" data-collectionId = "{{collectionId}}" data-reviewId = "{{book.reviews.0.reviewId}}">Delete from collection</button>
+            {{/if}}
         </div>
     </div>
     <br>
 
 </div>
-
