@@ -1,35 +1,42 @@
-<div class="col-span-8 p-20 text-xl outline outline-1"></div>
+<div class="col-span-8 p-6 m-2 mx-4 text-xl outline outline-1 outline-[--amber] bg[--brown] rounded-xl">
+   <div class="outline outline-1 outline-[--amber] rounded-t-xl p-2">
+        <h2 class="text-white text-6xl text-center bg-[--night] rounded-t-xl">Free Books</h2> 
+        <!-- Add the genre form -->
+        <form id="genre-form" class="text-center bg-white text-xl p-2">
+            <label for="genre-input" class="font-bold">Select Genre:</label>
+            <input type="checkbox" name="genre" value="fiction"> Fiction</input>
+            <input type="checkbox" name="genre" value="humour"> Humour</input>
+            <input type="checkbox" name="genre" value="fantasy"> Fantasy</input>
+            <input type="checkbox" name="genre" value="mystery"> Mystery</input>
+            <input type="checkbox" name="genre" value="science"> Science</input>
+            <input type="checkbox" name="genre" value="history"> History</input>
+            <input type="checkbox" name="genre" value="nature"> Nature</input>
+            <input type="checkbox" name="genre" value="poetry"> Poetry</input>
+            <input type="checkbox" name="genre" value="self-help"> Self-Help</input>
+
+            <button type="submit" class="bg-lime-800 hover:bg-lime-700 text-white active:opacity-50 font-bold py-2 px-4 rounded">Search</button>      
+        </form>
+   </div><br>
+    
     <!-- Container to hold free books content -->
-    <div id="freebooks-container" class="max-w-md mx-auto overflow-y-auto mt-4 p-4 border rounded">
+    <div id="freebooks-container" class="grid grid-cols-4">
         {{#each books}}
-            <div class="card mb-4">
-                <!-- Display book cover image -->
-                <img src="{{this.volumeInfo.imageLinks.thumbnail}}" alt="{{this.volumeInfo.title}}" class="mt-2 rounded">
+            <div class="bg-white outline outline-4 outline-[--amber] rounded-xl p-2 m-2">
+                <div class="m-2 p-2">
+                    <!-- Display book cover image -->
+                    <img src="{{this.volumeInfo.imageLinks.thumbnail}}" alt="{{this.volumeInfo.title}}" class="mt-2 rounded">
+                </div>
                 <!-- Display book details as links with Tailwind CSS styling -->
                 <h4 class="card-title">
                     <a href="{{this.volumeInfo.infoLink}}" target="_blank" class="text-blue-500 hover:underline">
                         {{this.volumeInfo.title}}
                     </a>
                 </h4>
-                <p>By: {{this.volumeInfo.authors}}</p>
+                <p class="truncate">By: {{this.volumeInfo.authors}}</p>
             </div>
         {{/each}}
+    </div>
 
- <!-- Add the genre form -->
-    <form id="genre-form">
-      <label for="genre-input">Select Genres:</label>
-      <input type="checkbox" name="genre" value="fiction"> Fiction
-      <input type="checkbox" name="genre" value="humour"> Humour
-      <input type="checkbox" name="genre" value="fantasy"> Fantasy
-      <input type="checkbox" name="genre" value="mystery"> Mystery
-      <input type="checkbox" name="genre" value="science"> Science
-      <input type="checkbox" name="genre" value="history"> History
-      <input type="checkbox" name="genre" value="nature"> Nature
-      <input type="checkbox" name="genre" value="poetry"> Poetry
-      <input type="checkbox" name="genre" value="self-help"> Self-Help
-  
-      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
-    </form>
 </div>
 
     
