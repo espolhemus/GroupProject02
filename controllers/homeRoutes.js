@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Collection, Review, Book } = require('../models');
 const withAuth = require('../utils/auth');
 
+// retrieve all of the users collections and the associated book / review data
 router.get('/', withAuth, async (req, res) => {
   try {
    

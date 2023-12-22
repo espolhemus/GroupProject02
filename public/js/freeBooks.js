@@ -1,4 +1,4 @@
-// freeBooks.js
+// Display list of free books when user presses submit button
 function searchFreeBooks() {
   var selectedGenres = document.querySelectorAll('input[name="genre"]:checked');
   var genreValues = Array.from(selectedGenres).map(genre => genre.value).join(',');
@@ -13,7 +13,6 @@ function searchFreeBooks() {
           return response.json(); // Use json() instead of text()
       })
       .then(parsedResponse => {
-          console.log('Parsed Response:', parsedResponse);
           renderBooks(parsedResponse.books);
       })
       .catch(error => {

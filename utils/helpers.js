@@ -31,9 +31,6 @@ module.exports = {
     if(rating == 5){
       return true;
     }
-  },
-  get_name: () => {
-    return req.session.name;
   }
  
 };

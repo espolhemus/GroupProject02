@@ -19,7 +19,7 @@ router.post('/', withAuth, async (req, res) => {
 
         res.status(200).json(reviewData);
     } catch (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).json(err);
     }
 });
@@ -28,7 +28,6 @@ router.post('/', withAuth, async (req, res) => {
 router.put('/', withAuth, async (req, res) => {
 
     try {
-        console.log('reviewscore: ' + req.body.reviewScore + 'bookisbn: ' + req.body.bookIsbn + 'userid:' +req.session.user_id);
         const reviewData = await Review.update(
             {
                 reviewScore: req.body.reviewScore
@@ -43,7 +42,7 @@ router.put('/', withAuth, async (req, res) => {
         res.status(200).json(reviewData);
 
     } catch (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).json(err);
     }
 });

@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { Collection, User, Review, Book } = require('../models');
 const withAuth = require('../utils/auth');
 const fetch = require('node-fetch');
 require('dotenv').config();
 
+// get a list of free books by the genre
 router.get('/', withAuth, async (req, res) => {
     const { genre } = req.query;
     const genres = genre ? genre.split(',') : []; // Split the genre string into an array
