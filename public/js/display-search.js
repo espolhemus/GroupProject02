@@ -12,7 +12,7 @@ async function searchBooks(searchInputValue, searchTypeValue) {
     const responseData = await response.json();
     const { items } = responseData;
     displaySearchResults(items)
-  } catch (err){
+  } catch (err) {
     console.error(err);
   }
 
@@ -111,25 +111,16 @@ function displaySearchResults(books) {
   // Add an event listener to the button
   haveReadData.forEach(button => {
     button.addEventListener('click', async (event) => {
-      console.log("Event listener working");
+      // pull out data attributes
       const bookIsbn = event.target.dataset.volumeisbn;
-      console.log(bookIsbn);
       const bookTitle = event.target.dataset.volumetitle;
-      console.log(bookTitle);
       const bookDescription = event.target.dataset.volumedescription;
-      console.log(bookDescription);
       const bookAuthor = event.target.dataset.volumeauthors;
-      console.log(bookAuthor);
       const bookInfoLink = event.target.dataset.volumeinfolink;
-      console.log(bookInfoLink);
       const bookImageUrl = event.target.dataset.volumeimagelink;
-      console.log(bookImageUrl);
       const bookPublisherName = event.target.dataset.volumepublisher;
-      console.log(bookPublisherName);
       const bookPages = event.target.dataset.volumepagecount;
-      console.log(bookPages);
       const bookPublicationDate = event.target.dataset.volumepublisheddate;
-      console.log(bookPublicationDate);
       const hasRead = true
 
       // Create an array representing the book
@@ -144,6 +135,7 @@ function displaySearchResults(books) {
         body: JSON.stringify(book)
       })
 
+      // create new collection entry for newly added book
 
       const collection = [bookIsbn, hasRead]
 
@@ -155,8 +147,11 @@ function displaySearchResults(books) {
         body: JSON.stringify(collection)
       })
 
-      const review = [bookIsbn]
 
+
+      // create a review for newly added hasread book with default score of 0
+
+      const review = [bookIsbn]
       const response3 = await fetch('/api/review', {
         method: 'POST',
         headers: {
@@ -175,25 +170,15 @@ function displaySearchResults(books) {
   // Add an event listener to the button
   wantToReadData.forEach(button => {
     button.addEventListener('click', async (event) => {
-      console.log("Event listener working");
       const bookIsbn = event.target.dataset.volumeisbn;
-      console.log(bookIsbn);
       const bookTitle = event.target.dataset.volumetitle;
-      console.log(bookTitle);
       const bookDescription = event.target.dataset.volumedescription;
-      console.log(bookDescription);
       const bookAuthor = event.target.dataset.volumeauthors;
-      console.log(bookAuthor);
       const bookInfoLink = event.target.dataset.volumeinfolink;
-      console.log(bookInfoLink);
       const bookImageUrl = event.target.dataset.volumeimagelink;
-      console.log(bookImageUrl);
       const bookPublisherName = event.target.dataset.volumepublisher;
-      console.log(bookPublisherName);
       const bookPages = event.target.dataset.volumepagecount;
-      console.log(bookPages);
       const bookPublicationDate = event.target.dataset.volumepublisheddate;
-      console.log(bookPublicationDate);
       const hasRead = false
 
       // Create an array representing the book
@@ -209,6 +194,7 @@ function displaySearchResults(books) {
         body: JSON.stringify(book)
       })
 
+      // create a collection for newly added book with default score of 0
 
       const collection = [bookIsbn, hasRead]
 

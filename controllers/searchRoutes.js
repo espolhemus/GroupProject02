@@ -2,7 +2,7 @@ const router = require('express').Router();
 const withAuth = require('../utils/auth');
 require('dotenv').config();
 
-
+// load the search handlebars
 router.get('/', withAuth, async (req, res) => {
     try {
       res.render('search', {
@@ -12,7 +12,7 @@ router.get('/', withAuth, async (req, res) => {
 
       })
     } catch (err) {
-      console.log(err);
+      console.error(err);
       res.status(500).json(err);
     };
   });
@@ -21,7 +21,6 @@ router.get('/', withAuth, async (req, res) => {
 router.post('/', withAuth, async (req,res) => {
   var url = req.body.apiURL;
   url += process.env.API_KEY;
-  console.log(url);
   const response = await fetch(url, {
     method: 'GET',
     headers: {

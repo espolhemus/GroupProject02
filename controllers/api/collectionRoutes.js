@@ -55,7 +55,7 @@ router.delete('/', withAuth, async (req, res) => {
   
       res.status(200).json(collectionData);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       res.status(500).json(err);
     }
   });

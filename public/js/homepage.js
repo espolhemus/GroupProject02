@@ -107,7 +107,6 @@ const del = document.querySelectorAll('.del')
 del.forEach(btn => {
     btn.addEventListener('click', async (event) => {
         const collectionId = event.target.dataset.collectionid;
-        console.log(collectionId);
         const response = await fetch('/api/collection', {
             method: 'DELETE',
             headers: {
