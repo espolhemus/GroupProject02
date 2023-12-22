@@ -54,6 +54,8 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
+
+
 // If user logged in redirect to home else redirect to login
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {

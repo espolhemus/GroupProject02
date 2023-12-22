@@ -44,7 +44,7 @@ router.post('/', withAuth, async (req, res) => {
 
 
 // delete a post
-router.delete('/', async (req, res) => {
+router.delete('/', withAuth, async (req, res) => {
    
     try {
       const collectionData = await Collection.destroy({

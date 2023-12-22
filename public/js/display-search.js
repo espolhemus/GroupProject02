@@ -1,18 +1,21 @@
 // Search books using title input select
-function searchBooks(searchInputValue, searchTypeValue) {
-  var apiKey = 'AIzaSyB7B-Q8ya3aud6KiRhixk3IPODDK1umTF0';
-  apiURL = `https://www.googleapis.com/books/v1/volumes?q=${searchInputValue}+${searchTypeValue}&key=${apiKey}`
-  fetch(apiURL)
-    .then(response => response.json())
-    .then(responseData => {
-      const { items } = responseData;
-      console.log(items);
-      displaySearchResults(items)
-
+async function searchBooks(searchInputValue, searchTypeValue) {
+  var apiURL = `https://www.googleapis.com/books/v1/volumes?q=${searchInputValue}+${searchTypeValue}&key=`
+  try {
+    const response = await fetch(`/search`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ apiURL })
     })
-    .catch(error => {
-      console.error("Error:", error);
-    });
+    const responseData = await response.json();
+    const { items } = responseData;
+    displaySearchResults(items)
+  } catch (err){
+    console.error(err);
+  }
+
 }
 
 
@@ -38,20 +41,20 @@ function displaySearchResults(books) {
 
     var description;
     if (!volumeInfo.description) {
-      description = 'No description included.'
+      description = 'No description provided.'
     } else {
       description = volumeInfo.description;
     }
     var pages;
     if (!volumeInfo.pageCount) {
-      pages = 'Not provided'
+      pages = 'No page count provided'
     } else {
       pages = volumeInfo.pageCount;
     }
 
     var publisher;
     if (!volumeInfo.publisher) {
-      publisher = 'Not provided'
+      publisher = 'No publisher provided'
     } else {
       publisher = volumeInfo.publisher;
     }
@@ -64,9 +67,9 @@ function displaySearchResults(books) {
     }
 
     var authors;
-    
+
     if (!volumeInfo.authors) {
-      authors = 'Not provided.'
+      authors = 'Not author provided.'
     } else {
       authors = volumeInfo.authors;
     }
@@ -74,16 +77,15 @@ function displaySearchResults(books) {
     var isbn;
     if (!volumeInfo.industryIdentifiers) {
       isbn = book.id
-    }else  if (test.length == 2){
+    } else if (test.length == 2) {
       isbn = test[1];
-      }
-      else {
+    }
+    else {
       isbn = volumeInfo.industryIdentifiers[0].identifier;
     }
 
-    console.log('isbn: ' + volumeInfo.industryIdentifiers);
     // generate card with the information and attach it to the results container 
-        bookCard.innerHTML = `
+    bookCard.innerHTML = `
       <div class="col-span-1">
           <div class="card-body gap-2 p-6 m-6 text-base border-t-20 border-[--night] outline outline-4 outline-[--amber] bg-white rounded-xl ">
           <h4 class="card-title bg-[--night] p-2 mb-2 rounded-t-xl text-center text-lg text-white font-bold truncate">"${volumeInfo.title}"</h4>
@@ -162,7 +164,7 @@ function displaySearchResults(books) {
         },
         body: JSON.stringify(review)
       })
-      
+
     })
   });
 
